@@ -2,13 +2,13 @@
   <mat-card-title> Cadastrar o produto </mat-card-title>
   <form [formGroup]="productForm">
     <mat-form-field>
-      <input placeholder="Nome" matInput formControlName="name" name="name" />
+      <input placeholder="Nome" matInput formControlName="nome" name="nome" />
     </mat-form-field>
     <p>
       <span
         *ngIf="
-          productFormControl.name.touched &&
-          productFormControl.name.errors?.required
+          productFormControl.nome.touched &&
+          productFormControl.nome.errors?.required
         "
         class="text-danger"
       >
@@ -18,17 +18,24 @@
 
     <mat-form-field>
       <input
+        currencyMask
         placeholder="Preço(R$)"
         matInput
-        formControlName="price"
-        name="price"
+        formControlName="preco"
+        name="preco"
+        [options]="{
+          prefix: 'R$ ',
+          thousands: '.',
+          decimal: ',',
+          align: 'left'
+        }"
       />
     </mat-form-field>
     <p>
       <span
         *ngIf="
-          productFormControl.price.touched &&
-          productFormControl.price.errors?.required
+          productFormControl.preco.touched &&
+          productFormControl.preco.errors?.required
         "
         class="text-danger"
       >

@@ -2,14 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
-import { IProduct } from '../models/iproduct.model';
+import { IProduto } from '../models/iproduct.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  create(product: IProduct) {
+  create(product: IProduto) {
     throw new Error('Method not implemented.');
   }
   constructor(private snack: MatSnackBar, private http: HttpClient) {}
@@ -23,26 +23,26 @@ export class ProductService {
     });
   }
 
-  createProduct(product: IProduct): Observable<IProduct> {
-    return this.http.post<IProduct>(`${environment.apiurl}/products`, product);
+  createProduct(product: IProduto): Observable<IProduto> {
+    return this.http.post<IProduto>(`${environment.apiurl}/produtos`, product);
   }
 
-  readProduct(): Observable<IProduct[]> {
-    return this.http.get<IProduct[]>(`${environment.apiurl}/products`);
+  readProduct(): Observable<IProduto[]> {
+    return this.http.get<IProduto[]>(`${environment.apiurl}/produtos`);
   }
 
-  readById(id: string): Observable<IProduct> {
-    return this.http.get<IProduct>(`${environment.apiurl}/products/${id}`);
+  readById(id: string): Observable<IProduto> {
+    return this.http.get<IProduto>(`${environment.apiurl}/produtos/${id}`);
   }
 
-  update(product: IProduct, id: string): Observable<IProduct> {
-    return this.http.put<IProduct>(
-      `${environment.apiurl}/products/${id}`,
+  update(product: IProduto, id: string): Observable<IProduto> {
+    return this.http.put<IProduto>(
+      `${environment.apiurl}/produtos/${id}`,
       product
     );
   }
 
-  delete(id: string): Observable<IProduct> {
-    return this.http.delete<IProduct>(`${environment.apiurl}/products/${id}`);
+  delete(id: string): Observable<IProduto> {
+    return this.http.delete<IProduto>(`${environment.apiurl}/produtos/${id}`);
   }
 }

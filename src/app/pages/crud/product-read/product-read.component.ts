@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IProduct } from 'src/app/shared/models/iproduct.model';
+import { IProduto } from 'src/app/shared/models/iproduct.model';
 import { ProductService } from 'src/app/shared/services/product.service';
 
 @Component({
@@ -8,9 +8,9 @@ import { ProductService } from 'src/app/shared/services/product.service';
   styleUrls: ['./product-read.component.scss'],
 })
 export class ProductReadComponent implements OnInit {
-  products!: IProduct[];
+  products!: IProduto[];
 
-  displayedColumns = ['id', 'name', 'price', 'action'];
+  displayedColumns = ['id', 'nome', 'preco', 'action'];
 
   constructor(private productService: ProductService) {}
 

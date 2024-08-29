@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import {
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'src/app/shared/services/product.service';
 
@@ -24,16 +28,17 @@ export class ProductUpdateComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.productForm = fb.group({
-      name: ['', Validators.required],
-      price: ['', Validators.required],
+      nome: ['', Validators.required],
+      preco: ['', Validators.required],
     });
   }
 
   ngOnInit(): void {
     this.productId = this.route.snapshot.paramMap.get('id');
     this.productService.readById(this.productId).subscribe((product) => {
-      this.productForm.controls['name'].setValue(product.name);
-      this.productForm.controls['price'].setValue(product.price);
+      console.log(product);
+      this.productForm.controls['nome'].setValue(product.nome);
+      this.productForm.controls['preco'].setValue(product.preco);
     });
   }
 

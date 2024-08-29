@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import {
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
-import { IProduct } from 'src/app/shared/models/iproduct.model';
+import { IProduto } from 'src/app/shared/models/iproduct.model';
 import { ProductService } from 'src/app/shared/services/product.service';
 
 @Component({
@@ -18,12 +22,12 @@ export class ProductCreateComponent implements OnInit {
     private fb: UntypedFormBuilder
   ) {
     this.productForm = fb.group({
-      name: ['', Validators.required],
-      price: ['', Validators.required],
+      nome: ['', Validators.required],
+      preco: ['', Validators.required],
     });
   }
 
-  get product(): IProduct {
+  get product(): IProduto {
     const product = this.productForm.value;
     return product;
   }

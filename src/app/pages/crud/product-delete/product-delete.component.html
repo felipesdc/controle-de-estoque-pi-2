@@ -5,19 +5,26 @@
       <input
         placeholder="Nome"
         matInput
-        formControlName="name"
-        name="name"
+        formControlName="nome"
+        name="nome"
         readonly=""
       />
     </mat-form-field>
 
     <mat-form-field>
       <input
+        currencyMask
         placeholder="Preço(R$)"
         matInput
-        formControlName="price"
-        name="price"
+        formControlName="preco"
+        name="preco"
         readonly=""
+        [options]="{
+          prefix: 'R$ ',
+          thousands: '.',
+          decimal: ',',
+          align: 'left'
+        }"
       />
     </mat-form-field>
   </form>

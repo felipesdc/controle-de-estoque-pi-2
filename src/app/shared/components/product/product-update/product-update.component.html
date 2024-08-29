@@ -2,15 +2,22 @@
   <mat-card-title> Alterar o produto </mat-card-title>
   <form [formGroup]="productForm">
     <mat-form-field>
-      <input placeholder="Nome" matInput formControlName="name" name="name" />
+      <input placeholder="Nome" matInput formControlName="nome" name="nome" />
     </mat-form-field>
 
     <mat-form-field>
       <input
+        currencyMask
         placeholder="Preço(R$)"
         matInput
-        formControlName="price"
-        name="price"
+        formControlName="preco"
+        name="preco"
+        [options]="{
+          prefix: 'R$ ',
+          thousands: '.',
+          decimal: ',',
+          align: 'left'
+        }"
       />
     </mat-form-field>
   </form>

@@ -10,7 +10,10 @@ import { HomeLayoutComponent } from './shared/layouts/home-layout/home-layout.co
 import { CommonModule } from '@angular/common';
 import { CrudComponent } from './pages/crud/crud.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 import { ProductService } from './shared/services/product.service';
 
 import localePt from '@angular/common/locales/pt';
@@ -22,35 +25,43 @@ import { HomeModule } from './pages/home/home.module';
 import { ProductReadComponent } from './pages/crud/product-read/product-read.component';
 import { ProductDeleteComponent } from './pages/crud/product-delete/product-delete.component';
 import { SidenavComponent } from './shared/components/sidenav/sidenav.component';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
 
 registerLocaleData(localePt);
 
-@NgModule({ declarations: [
-        AppComponent,
-        HeaderComponent,
-        AppComponent,
-        FooterComponent,
-        SidenavComponent,
-        HomeLayoutComponent,
-        CrudComponent,
-        ProductCreateComponent,
-        ProductUpdateComponent,
-        ProductReadComponent,
-        ProductDeleteComponent,
-    ],
-    bootstrap: [AppComponent], imports: [BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        HomeModule,
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MaterialModule], providers: [
-        ProductService,
-        {
-            provide: LOCALE_ID,
-            useValue: 'pt-br',
-        },
-        provideHttpClient(withInterceptorsFromDi()),
-    ] })
+@NgModule({
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    AppComponent,
+    FooterComponent,
+    SidenavComponent,
+    HomeLayoutComponent,
+    CrudComponent,
+    ProductCreateComponent,
+    ProductUpdateComponent,
+    ProductReadComponent,
+    ProductDeleteComponent,
+  ],
+  bootstrap: [AppComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    HomeModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MaterialModule,
+    CurrencyMaskModule,
+  ],
+  providers: [
+    ProductService,
+    {
+      provide: LOCALE_ID,
+      useValue: 'pt-br',
+    },
+    provideHttpClient(withInterceptorsFromDi()),
+  ],
+})
 export class AppModule {}

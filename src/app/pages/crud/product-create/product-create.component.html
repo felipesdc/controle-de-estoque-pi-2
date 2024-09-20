@@ -42,6 +42,26 @@
         Preço obrigatório
       </span>
     </p>
+
+    <mat-form-field>
+      <input
+        placeholder="Quantidade"
+        matInput
+        formControlName="quantidade"
+        name="quantidade"
+      />
+    </mat-form-field>
+    <p>
+      <span
+        *ngIf="
+          productFormControl.quantidade.touched &&
+          productFormControl.quantidade.errors?.required
+        "
+        class="text-danger"
+      >
+        Quantidade obrigatório
+      </span>
+    </p>
   </form>
 
   <button

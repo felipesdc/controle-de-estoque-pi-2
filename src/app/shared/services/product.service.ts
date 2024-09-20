@@ -9,9 +9,6 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class ProductService {
-  create(product: IProduto) {
-    throw new Error('Method not implemented.');
-  }
   constructor(private snack: MatSnackBar, private http: HttpClient) {}
 
   showMessage(msg: string, css: string): void {

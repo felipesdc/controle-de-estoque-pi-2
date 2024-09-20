@@ -24,6 +24,7 @@ export class ProductCreateComponent implements OnInit {
     this.productForm = fb.group({
       nome: ['', Validators.required],
       preco: ['', Validators.required],
+      quantidade: ['', Validators.required],
     });
   }
 

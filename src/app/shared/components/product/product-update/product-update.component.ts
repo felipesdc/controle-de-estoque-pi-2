@@ -30,6 +30,7 @@ export class ProductUpdateComponent implements OnInit {
     this.productForm = fb.group({
       nome: ['', Validators.required],
       preco: ['', Validators.required],
+      quantidade: ['', Validators.required],
     });
   }
 
@@ -39,6 +40,7 @@ export class ProductUpdateComponent implements OnInit {
       console.log(product);
       this.productForm.controls['nome'].setValue(product.nome);
       this.productForm.controls['preco'].setValue(product.preco);
+      this.productForm.controls['quantidade'].setValue(product.quantidade);
     });
   }
 

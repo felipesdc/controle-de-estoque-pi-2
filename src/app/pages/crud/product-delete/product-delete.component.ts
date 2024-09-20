@@ -30,6 +30,7 @@ export class ProductDeleteComponent implements OnInit {
     this.productForm = fb.group({
       nome: ['', Validators.required],
       preco: ['', Validators.required],
+      quantidade: ['', Validators.required],
     });
   }
 
@@ -38,6 +39,7 @@ export class ProductDeleteComponent implements OnInit {
     this.productService.readById(this.productId).subscribe((product) => {
       this.productForm.controls['nome'].setValue(product.nome);
       this.productForm.controls['preco'].setValue(product.preco);
+      this.productForm.controls['quantidade'].setValue(product.quantidade);
     });
   }
 

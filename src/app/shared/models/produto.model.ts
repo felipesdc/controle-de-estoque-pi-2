@@ -1,4 +1,4 @@
-export interface IProduto {
+export type Produto = {
   produto_id?: number;
   produto_descricao: string;
   produto_fornecedor_id: number;
@@ -9,4 +9,4 @@ export interface IProduto {
   produto_data_validade: Date;
   produto_codigo_barras: string;
   produto_estado: boolean;
-}
+};

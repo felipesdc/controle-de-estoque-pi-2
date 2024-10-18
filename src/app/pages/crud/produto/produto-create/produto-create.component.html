@@ -1,14 +1,14 @@
 <mat-card class="mat-elevation-z4">
   <mat-card-title> Cadastrar o produto </mat-card-title>
-  <form [formGroup]="productForm">
+  <form [formGroup]="produtoForm">
     <mat-form-field>
       <input placeholder="Nome" matInput formControlName="nome" name="nome" />
     </mat-form-field>
     <p>
       <span
         *ngIf="
-          productFormControl.nome.touched &&
-          productFormControl.nome.errors?.required
+          produtoFormControl.nome.touched &&
+          produtoFormControl.nome.errors?.required
         "
         class="text-danger"
       >
@@ -34,8 +34,8 @@
     <p>
       <span
         *ngIf="
-          productFormControl.preco.touched &&
-          productFormControl.preco.errors?.required
+          produtoFormControl.preco.touched &&
+          produtoFormControl.preco.errors?.required
         "
         class="text-danger"
       >
@@ -54,8 +54,8 @@
     <p>
       <span
         *ngIf="
-          productFormControl.quantidade.touched &&
-          productFormControl.quantidade.errors?.required
+          produtoFormControl.quantidade.touched &&
+          produtoFormControl.quantidade.errors?.required
         "
         class="text-danger"
       >
@@ -67,8 +67,8 @@
   <button
     mat-raised-button
     color="primary"
-    (click)="createProduct()"
-    [disabled]="productForm.invalid"
+    (click)="createProduto()"
+    [disabled]="produtoForm.invalid"
   >
     Cadastrar
   </button>

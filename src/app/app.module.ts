@@ -14,18 +14,29 @@ import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from '@angular/common/http';
-import { ProductService } from './shared/services/product.service';
+import { ProdutoService } from './shared/services/produto.service';
 
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { MaterialModule } from './shared/material/material.module';
-import { ProductCreateComponent } from './pages/crud/product-create/product-create.component';
-import { ProductUpdateComponent } from './shared/components/product/product-update/product-update.component';
+import { ProdutoCreateComponent } from './pages/crud/produto/produto-create/produto-create.component';
+import { ProdutoUpdateComponent } from './pages/crud/produto/produto-update/produto-update.component';
 import { HomeModule } from './pages/home/home.module';
-import { ProductReadComponent } from './pages/crud/product-read/product-read.component';
-import { ProductDeleteComponent } from './pages/crud/product-delete/product-delete.component';
+import { ProdutoReadComponent } from './pages/crud/produto/produto-read/produto-read.component';
+import { ProdutoDeleteComponent } from './pages/crud/produto/product-delete/produto-delete.component';
 import { SidenavComponent } from './shared/components/sidenav/sidenav.component';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { CategoriaService } from './shared/services/categoria.service';
+import { EstadoPedidoService } from './shared/services/estado-pedido.service';
+import { FornecedorService } from './shared/services/fornecedor.service';
+import { HistoricoEstadoPedidoService } from './shared/services/historico-estado-pedido.service';
+import { ItemPedidoService } from './shared/services/item-pedido.service';
+import { MovimentacaoEstoqueService } from './shared/services/movimentacao-estoque.service';
+import { PedidoService } from './shared/services/pedido.service';
+import { PerfilService } from './shared/services/perfil.service';
+import { PrecoService } from './shared/services/preco.service';
+import { UnidadeService } from './shared/services/unidade.service';
+import { UsuarioService } from './shared/services/usuario.service';
 
 registerLocaleData(localePt);
 
@@ -38,10 +49,10 @@ registerLocaleData(localePt);
     SidenavComponent,
     HomeLayoutComponent,
     CrudComponent,
-    ProductCreateComponent,
-    ProductUpdateComponent,
-    ProductReadComponent,
-    ProductDeleteComponent,
+    ProdutoCreateComponent,
+    ProdutoUpdateComponent,
+    ProdutoReadComponent,
+    ProdutoDeleteComponent,
   ],
   bootstrap: [AppComponent],
   imports: [
@@ -56,7 +67,18 @@ registerLocaleData(localePt);
     CurrencyMaskModule,
   ],
   providers: [
-    ProductService,
+    CategoriaService,
+    EstadoPedidoService,
+    FornecedorService,
+    HistoricoEstadoPedidoService,
+    ItemPedidoService,
+    MovimentacaoEstoqueService,
+    PedidoService,
+    PerfilService,
+    PrecoService,
+    ProdutoService,
+    UnidadeService,
+    UsuarioService,
     {
       provide: LOCALE_ID,
       useValue: 'pt-br',

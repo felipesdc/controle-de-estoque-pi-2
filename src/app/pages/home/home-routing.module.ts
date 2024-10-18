@@ -2,17 +2,17 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CrudComponent } from '../crud/crud.component';
-import { ProductCreateComponent } from '../crud/product-create/product-create.component';
-import { ProductDeleteComponent } from '../crud/product-delete/product-delete.component';
-import { ProductUpdateComponent } from '../../shared/components/product/product-update/product-update.component';
+import { ProdutoCreateComponent } from '../crud/produto/produto-create/produto-create.component';
+import { ProdutoDeleteComponent } from '../crud/produto/product-delete/produto-delete.component';
+import { ProdutoUpdateComponent } from '../crud/produto/produto-update/produto-update.component';
 import { HomeComponent } from './home.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'crud', component: CrudComponent },
-  { path: 'product/create', component: ProductCreateComponent },
-  { path: 'product/update/:id', component: ProductUpdateComponent },
-  { path: 'product/delete/:id', component: ProductDeleteComponent },
+  { path: 'produto/create', component: ProdutoCreateComponent },
+  { path: 'produto/update/:id', component: ProdutoUpdateComponent },
+  { path: 'produto/delete/:id', component: ProdutoDeleteComponent },
 ];
 
 @NgModule({

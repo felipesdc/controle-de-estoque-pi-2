@@ -1,0 +1,43 @@
+edido<mat-card class="mat-elevation-z4">
+  <mat-card-title> Alterar o pedido </mat-card-title>
+  <form [formGroup]="pedidoForm">
+    <mat-form-field>
+      <input placeholder="Nome" matInput formControlName="nome" name="nome" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        currencyMask
+        placeholder="Preço(R$)"
+        matInput
+        formControlName="preco"
+        name="preco"
+        [options]="{
+          prefix: 'R$ ',
+          thousands: '.',
+          decimal: ',',
+          align: 'left'
+        }"
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        placeholder="Quantidade"
+        matInput
+        formControlName="quantidade"
+        name="quantidade"
+      />
+    </mat-form-field>
+  </form>
+
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="updatePedido()"
+    [disabled]="pedidoForm.invalid"
+  >
+    Alterar
+  </button>
+  <button mat-raised-button (click)="cancel()">Cancelar</button>
+</mat-card>

@@ -45,12 +45,12 @@ export class ProdutoCreateComponent implements OnInit {
         'Produto criado com sucesso!',
         'backsnack'
       );
-      this.router.navigate(['/crud']);
+      this.router.navigate(['/crud', 'produto']);
       console.log(this.produto);
     });
   }
 
   cancel(): void {
-    this.router.navigate(['/crud']);
+    this.router.navigate(['/crud', 'produto']);
   }
 }

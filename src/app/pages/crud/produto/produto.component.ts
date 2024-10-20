@@ -3,11 +3,11 @@ import { Produto } from 'src/app/shared/models/produto.model';
 import { ProdutoService } from 'src/app/shared/services/produto.service';
 
 @Component({
-  selector: 'app-produto-read',
-  templateUrl: './produto-read.component.html',
-  styleUrls: ['./produto-read.component.scss'],
+  selector: 'app-crud-produto',
+  templateUrl: './produto.component.html',
+  styleUrls: ['./produto.component.scss'],
 })
-export class ProdutoReadComponent implements OnInit {
+export class ProdutoComponent implements OnInit {
   produtos!: Produto[];
 
   displayedColumns = ['id', 'nome', 'preco', 'quantidade', 'action'];

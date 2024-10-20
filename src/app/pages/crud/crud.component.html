@@ -1,5 +1,25 @@
-<button mat-raised-button color="primary" (click)="navigateToProductCreate()">
+<button
+  *ngIf="itemSelecionado === 'produto'"
+  mat-raised-button
+  color="primary"
+  (click)="navigateToProdutoCreate()"
+>
   Cadastrar um produto
 </button>
 
-<app-produto-read></app-produto-read>
+<button
+  *ngIf="itemSelecionado === 'pedido'"
+  mat-raised-button
+  color="primary"
+  (click)="navigateToPedidoCreate()"
+>
+  Cadastrar um produto
+</button>
+
+<div *ngIf="itemSelecionado === 'produto'">
+  <app-crud-produto></app-crud-produto>
+</div>
+
+<div *ngIf="itemSelecionado === 'pedido'">
+  <app-crud-produto></app-crud-produto>
+</div>

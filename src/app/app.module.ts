@@ -22,8 +22,8 @@ import { MaterialModule } from './shared/material/material.module';
 import { ProdutoCreateComponent } from './pages/crud/produto/produto-create/produto-create.component';
 import { ProdutoUpdateComponent } from './pages/crud/produto/produto-update/produto-update.component';
 import { HomeModule } from './pages/home/home.module';
-import { ProdutoReadComponent } from './pages/crud/produto/produto-read/produto-read.component';
-import { ProdutoDeleteComponent } from './pages/crud/produto/product-delete/produto-delete.component';
+import { ProdutoComponent } from './pages/crud/produto/produto.component';
+import { ProdutoDeleteComponent } from './pages/crud/produto/produto-delete/produto-delete.component';
 import { SidenavComponent } from './shared/components/sidenav/sidenav.component';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { CategoriaService } from './shared/services/categoria.service';
@@ -37,6 +37,10 @@ import { PerfilService } from './shared/services/perfil.service';
 import { PrecoService } from './shared/services/preco.service';
 import { UnidadeService } from './shared/services/unidade.service';
 import { UsuarioService } from './shared/services/usuario.service';
+import { PedidoCreateComponent } from './pages/crud/pedido/pedido-create/pedido-create.component';
+import { PedidoUpdateComponent } from './pages/crud/pedido/pedido-update/pedido-update.component';
+import { PedidoComponent } from './pages/crud/pedido/pedido.component';
+import { PedidoDeleteComponent } from './pages/crud/pedido/pedido-delete/pedido-delete.component';
 
 registerLocaleData(localePt);
 
@@ -51,8 +55,12 @@ registerLocaleData(localePt);
     CrudComponent,
     ProdutoCreateComponent,
     ProdutoUpdateComponent,
-    ProdutoReadComponent,
+    ProdutoComponent,
     ProdutoDeleteComponent,
+    PedidoCreateComponent,
+    PedidoUpdateComponent,
+    PedidoComponent,
+    PedidoDeleteComponent,
   ],
   bootstrap: [AppComponent],
   imports: [

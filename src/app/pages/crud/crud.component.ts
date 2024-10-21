@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -9,11 +9,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class CrudComponent implements OnInit {
   public itemSelecionado = 'produto';
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
-
-  ngOnInit(): void {
-    console.log(this.route.snapshot.paramMap.get('item'));
+  constructor(private router: Router, private route: ActivatedRoute) {
+    router.events.subscribe((val) => {
+      console.log(val);
+    });
   }
+
+  ngOnInit(): void {}
 
   navigateToProdutoCreate(): void {
     this.router.navigate(['/produto/create']);

@@ -35,7 +35,7 @@ export class PedidoDeleteComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.pedidoId = this.route.snapshot.paramMap.get('id');
+    this.pedidoId = this.route.snapshot.paramMap.get('pedido_id');
     this.pedidoService.getPedido(this.pedidoId).subscribe((pedido) => {
       this.pedidoForm.controls['nome'].setValue(pedido.pedido_observacao);
       this.pedidoForm.controls['preco'].setValue(pedido.pedido_total);

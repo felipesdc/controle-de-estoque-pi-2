@@ -13,7 +13,7 @@
   color="primary"
   (click)="navigateToPedidoCreate()"
 >
-  Cadastrar um produto
+  Cadastrar um pedido
 </button>
 
 <div *ngIf="itemSelecionado === 'produto'">
@@ -21,5 +21,5 @@
 </div>
 
 <div *ngIf="itemSelecionado === 'pedido'">
-  <app-crud-produto></app-crud-produto>
+  <app-crud-pedido></app-crud-pedido>
 </div>

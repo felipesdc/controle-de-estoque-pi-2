@@ -35,7 +35,7 @@ export class PedidoUpdateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.pedido_id = this.route.snapshot.paramMap.get('id');
+    this.pedido_id = this.route.snapshot.paramMap.get('pedido_id');
     this.pedidoService.getPedido(this.pedido_id).subscribe((pedido) => {
       console.log(pedido);
       this.pedidoForm.controls['nome'].setValue(pedido.pedido_observacao);

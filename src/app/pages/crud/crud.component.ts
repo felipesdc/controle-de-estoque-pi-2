@@ -25,4 +25,8 @@ export class CrudComponent implements OnInit {
   navigateToPedidoCreate(): void {
     this.router.navigate(['/pedido/create']);
   }
+
+  navigateToCategoriaCreate(): void {
+    this.router.navigate(['/categoria/create']);
+  }
 }

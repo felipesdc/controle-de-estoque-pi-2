@@ -14,33 +14,40 @@ import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from '@angular/common/http';
-import { ProdutoService } from './shared/services/produto.service';
 
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { MaterialModule } from './shared/material/material.module';
-import { ProdutoCreateComponent } from './pages/crud/produto/produto-create/produto-create.component';
-import { ProdutoUpdateComponent } from './pages/crud/produto/produto-update/produto-update.component';
 import { HomeModule } from './pages/home/home.module';
-import { ProdutoComponent } from './pages/crud/produto/produto.component';
-import { ProdutoDeleteComponent } from './pages/crud/produto/produto-delete/produto-delete.component';
 import { SidenavComponent } from './shared/components/sidenav/sidenav.component';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
-import { CategoriaService } from './shared/services/categoria.service';
 import { EstadoPedidoService } from './shared/services/estado-pedido.service';
 import { FornecedorService } from './shared/services/fornecedor.service';
 import { HistoricoEstadoPedidoService } from './shared/services/historico-estado-pedido.service';
 import { ItemPedidoService } from './shared/services/item-pedido.service';
 import { MovimentacaoEstoqueService } from './shared/services/movimentacao-estoque.service';
-import { PedidoService } from './shared/services/pedido.service';
 import { PerfilService } from './shared/services/perfil.service';
 import { PrecoService } from './shared/services/preco.service';
 import { UnidadeService } from './shared/services/unidade.service';
 import { UsuarioService } from './shared/services/usuario.service';
+
+import { ProdutoComponent } from './pages/crud/produto/produto.component';
+import { ProdutoCreateComponent } from './pages/crud/produto/produto-create/produto-create.component';
+import { ProdutoUpdateComponent } from './pages/crud/produto/produto-update/produto-update.component';
+import { ProdutoDeleteComponent } from './pages/crud/produto/produto-delete/produto-delete.component';
+import { ProdutoService } from './shared/services/produto.service';
+
+import { PedidoComponent } from './pages/crud/pedido/pedido.component';
 import { PedidoCreateComponent } from './pages/crud/pedido/pedido-create/pedido-create.component';
 import { PedidoUpdateComponent } from './pages/crud/pedido/pedido-update/pedido-update.component';
-import { PedidoComponent } from './pages/crud/pedido/pedido.component';
 import { PedidoDeleteComponent } from './pages/crud/pedido/pedido-delete/pedido-delete.component';
+import { PedidoService } from './shared/services/pedido.service';
+
+import { CategoriaComponent } from './pages/crud/categoria/categoria.component';
+import { CategoriaCreateComponent } from './pages/crud/categoria/categoria-create/categoria-create.component';
+import { CategoriaUpdateComponent } from './pages/crud/categoria/categoria-update/categoria-update.component';
+import { CategoriaDeleteComponent } from './pages/crud/categoria/categoria-delete/categoria-delete.component';
+import { CategoriaService } from './shared/services/categoria.service';
 
 registerLocaleData(localePt);
 
@@ -61,6 +68,10 @@ registerLocaleData(localePt);
     PedidoUpdateComponent,
     PedidoComponent,
     PedidoDeleteComponent,
+    CategoriaCreateComponent,
+    CategoriaUpdateComponent,
+    CategoriaComponent,
+    CategoriaDeleteComponent,
   ],
   bootstrap: [AppComponent],
   imports: [

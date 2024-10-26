@@ -16,10 +16,23 @@
   Cadastrar um pedido
 </button>
 
+<button
+  *ngIf="itemSelecionado === 'categoria'"
+  mat-raised-button
+  color="primary"
+  (click)="navigateToCategoriaCreate()"
+>
+  Cadastrar um pedido
+</button>
+
 <div *ngIf="itemSelecionado === 'produto'">
   <app-crud-produto></app-crud-produto>
 </div>
 
 <div *ngIf="itemSelecionado === 'pedido'">
   <app-crud-pedido></app-crud-pedido>
+</div>
+
+<div *ngIf="itemSelecionado === 'categoria'">
+  <app-crud-categoria></app-crud-categoria>
 </div>

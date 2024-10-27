@@ -13,7 +13,7 @@ import { CategoriaService } from 'src/app/shared/services/categoria.service';
   styleUrls: ['./categoria-delete.component.scss'],
 })
 export class CategoriaDeleteComponent implements OnInit {
-  categoriaId: string;
+  categoria_id: string;
 
   categoriaForm: UntypedFormGroup;
 
@@ -28,14 +28,16 @@ export class CategoriaDeleteComponent implements OnInit {
     private fb: UntypedFormBuilder
   ) {
     this.categoriaForm = fb.group({
+      categoria_id: ['', Validators.required],
       categoria_descricao: ['', Validators.required],
     });
   }
 
   ngOnInit(): void {
-    this.categoriaId = this.route.snapshot.paramMap.get('categoria_id');
+    this.categoria_id = this.route.snapshot.paramMap.get('categoria_id');
+    this.categoriaForm.controls['categoria_id'].setValue(this.categoria_id);
     this.categoriaService
-      .getCategoria(this.categoriaId)
+      .getCategoria(this.categoria_id)
       .subscribe((categoria) => {
         this.categoriaForm.controls['categoria_descricao'].setValue(
           categoria.categoria_descricao
@@ -45,7 +47,7 @@ export class CategoriaDeleteComponent implements OnInit {
 
   deleteCategoria(): void {
     this.categoriaService
-      .deleteExistingCategoria(this.categoriaId)
+      .deleteExistingCategoria(this.categoria_id)
       .subscribe((categoria) => {
         this.categoriaService.showMessage(
           'Categoria excluída com sucesso!',

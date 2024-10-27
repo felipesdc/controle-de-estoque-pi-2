@@ -10,7 +10,11 @@ import { CategoriaService } from 'src/app/shared/services/categoria.service';
 export class CategoriaComponent implements OnInit {
   categorias!: Categoria[];
 
-  displayedColumns = ['categoria_id', 'categoria_descricao', 'action'];
+  displayedColumns = [
+    'categoria_id',
+    'categoria_descricao',
+    'categoria_action',
+  ];
 
   constructor(private categoriaService: CategoriaService) {}
 

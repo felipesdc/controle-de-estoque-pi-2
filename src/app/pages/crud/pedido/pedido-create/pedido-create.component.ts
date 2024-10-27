@@ -22,9 +22,16 @@ export class PedidoCreateComponent implements OnInit {
     private fb: UntypedFormBuilder
   ) {
     this.pedidoForm = fb.group({
-      nome: ['', Validators.required],
-      preco: ['', Validators.required],
-      quantidade: ['', Validators.required],
+      pedido_id: ['', Validators.required],
+      pedido_fornecedor_id: ['', Validators.required],
+      pedido_fornecedor: ['', Validators.required],
+      pedido_data: ['', Validators.required],
+      pedido_usuario_id: ['', Validators.required],
+      pedido_usuario: ['', Validators.required],
+      pedido_estado_id: ['', Validators.required],
+      pedido_estado: ['', Validators.required],
+      pedido_observacao: ['', Validators.required],
+      pedido_total: ['', Validators.required],
     });
   }
 

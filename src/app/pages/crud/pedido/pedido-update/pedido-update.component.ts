@@ -28,21 +28,45 @@ export class PedidoUpdateComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.pedidoForm = fb.group({
-      nome: ['', Validators.required],
-      preco: ['', Validators.required],
-      quantidade: ['', Validators.required],
+      pedido_id: ['', Validators.required],
+      pedido_fornecedor_id: ['', Validators.required],
+      pedido_fornecedor: ['', Validators.required],
+      pedido_data: ['', Validators.required],
+      pedido_usuario_id: ['', Validators.required],
+      pedido_usuario: ['', Validators.required],
+      pedido_estado_id: ['', Validators.required],
+      pedido_estado: ['', Validators.required],
+      pedido_observacao: ['', Validators.required],
+      pedido_total: ['', Validators.required],
     });
   }
 
   ngOnInit(): void {
     this.pedido_id = this.route.snapshot.paramMap.get('pedido_id');
+    this.pedidoForm.controls['pedido_id'].setValue(this.pedido_id);
     this.pedidoService.getPedido(this.pedido_id).subscribe((pedido) => {
       console.log(pedido);
-      this.pedidoForm.controls['nome'].setValue(pedido.pedido_observacao);
-      this.pedidoForm.controls['preco'].setValue(pedido.pedido_total);
-      this.pedidoForm.controls['quantidade'].setValue(
+      this.pedidoForm.controls['pedido_fornecedor_id'].setValue(
         pedido.pedido_fornecedor_id
       );
+      this.pedidoForm.controls['pedido_fornecedor'].setValue(
+        pedido.pedido_fornecedor
+      );
+      this.pedidoForm.controls['pedido_data'].setValue(pedido.pedido_data);
+      this.pedidoForm.controls['pedido_usuario_id'].setValue(
+        pedido.pedido_usuario_id
+      );
+      this.pedidoForm.controls['pedido_usuario'].setValue(
+        pedido.pedido_usuario
+      );
+      this.pedidoForm.controls['pedido_estado_id'].setValue(
+        pedido.pedido_estado_id
+      );
+      this.pedidoForm.controls['pedido_estado'].setValue(pedido.pedido_estado);
+      this.pedidoForm.controls['pedido_observacao'].setValue(
+        pedido.pedido_observacao
+      );
+      this.pedidoForm.controls['pedido_total'].setValue(pedido.pedido_total);
     });
   }
 

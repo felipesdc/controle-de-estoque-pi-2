@@ -10,7 +10,16 @@ import { PedidoService } from 'src/app/shared/services/pedido.service';
 export class PedidoComponent implements OnInit {
   pedidos!: Pedido[];
 
-  displayedColumns = ['id', 'nome', 'preco', 'quantidade', 'action'];
+  displayedColumns = [
+    'pedido_id',
+    'pedido_fornecedor',
+    'pedido_data',
+    'pedido_usuario',
+    'pedido_estado',
+    'pedido_observacao',
+    'pedido_total',
+    'pedido_action',
+  ];
 
   constructor(private pedidoService: PedidoService) {}
 

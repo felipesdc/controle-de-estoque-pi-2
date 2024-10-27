@@ -28,16 +28,17 @@ export class CategoriaUpdateComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.categoriaForm = fb.group({
+      categoria_id: ['', Validators.required],
       categoria_descricao: ['', Validators.required],
     });
   }
 
   ngOnInit(): void {
     this.categoria_id = this.route.snapshot.paramMap.get('categoria_id');
+    this.categoriaForm.controls['categoria_id'].setValue(this.categoria_id);
     this.categoriaService
       .getCategoria(this.categoria_id)
       .subscribe((categoria) => {
-        console.log(categoria);
         this.categoriaForm.controls['categoria_descricao'].setValue(
           categoria.categoria_descricao
         );

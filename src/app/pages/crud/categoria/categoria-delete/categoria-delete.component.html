@@ -3,6 +3,16 @@
   <form [formGroup]="categoriaForm">
     <mat-form-field>
       <input
+        placeholder="ID da Categoria"
+        matInput
+        formControlName="categoria_id"
+        name="categoria_id"
+        readonly=""
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
         placeholder="Descrição da categoria"
         matInput
         formControlName="categoria_descricao"

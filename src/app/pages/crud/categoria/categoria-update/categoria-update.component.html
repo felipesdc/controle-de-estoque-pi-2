@@ -3,12 +3,33 @@
   <form [formGroup]="categoriaForm">
     <mat-form-field>
       <input
+        placeholder="ID da Categoria"
+        matInput
+        formControlName="categoria_id"
+        name="categoria_id"
+        readonly=""
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
         placeholder="Descrição da Categoria"
         matInput
         formControlName="categoria_descricao"
         name="categoria_descricao"
       />
     </mat-form-field>
+    <p>
+      <span
+        *ngIf="
+          categoriaFormControl.categoria_descricao.touched &&
+          categoriaFormControl.categoria_descricao.errors?.required
+        "
+        class="text-danger"
+      >
+        Descrição da categoria obrigatória
+      </span>
+    </p>
   </form>
 
   <button

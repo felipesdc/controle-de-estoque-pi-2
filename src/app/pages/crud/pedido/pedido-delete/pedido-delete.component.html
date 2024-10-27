@@ -3,10 +3,80 @@
   <form [formGroup]="pedidoForm">
     <mat-form-field>
       <input
-        placeholder="Nome"
+        placeholder="ID do Fornecedor"
         matInput
-        formControlName="nome"
-        name="nome"
+        formControlName="pedido_fornecedor_id"
+        name="pedido_fornecedor_id"
+        readonly=""
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        placeholder="Nome do Fornecedor"
+        matInput
+        formControlName="pedido_fornecedor"
+        name="pedido_fornecedor"
+        readonly=""
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        placeholder="Data"
+        matInput
+        formControlName="pedido_data"
+        name="pedido_data"
+        readonly=""
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        placeholder="ID do Usuário"
+        matInput
+        formControlName="pedido_usuario_id"
+        name="pedido_usuario_id"
+        readonly=""
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        placeholder="Nome do Usuário"
+        matInput
+        formControlName="pedido_usuario"
+        name="pedido_usuario"
+        readonly=""
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        placeholder="ID do Estado do Pedido"
+        matInput
+        formControlName="pedido_estado_id"
+        name="pedido_estado_id"
+        readonly=""
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        placeholder="Estado do Pedido"
+        matInput
+        formControlName="pedido_estado"
+        name="pedido_estado"
+        readonly=""
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        placeholder="Observação"
+        matInput
+        formControlName="pedido_observacao"
+        name="pedido_observacao"
         readonly=""
       />
     </mat-form-field>
@@ -14,26 +84,16 @@
     <mat-form-field>
       <input
         currencyMask
-        placeholder="Preço(R$)"
+        placeholder="Total do Pedido (R$)"
         matInput
-        formControlName="preco"
-        name="preco"
-        readonly=""
+        formControlName="pedido_total"
+        name="pedido_total"
         [options]="{
           prefix: 'R$ ',
           thousands: '.',
           decimal: ',',
           align: 'left'
         }"
-      />
-    </mat-form-field>
-
-    <mat-form-field>
-      <input
-        placeholder="Quantidade"
-        matInput
-        formControlName="quantidade"
-        name="quantidade"
         readonly=""
       />
     </mat-form-field>

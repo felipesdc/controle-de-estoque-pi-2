@@ -22,9 +22,19 @@ export class ProdutoCreateComponent implements OnInit {
     private fb: UntypedFormBuilder
   ) {
     this.produtoForm = fb.group({
-      nome: ['', Validators.required],
-      preco: ['', Validators.required],
-      quantidade: ['', Validators.required],
+      produto_descricao: ['', Validators.required],
+      produto_fornecedor_id: ['', Validators.required],
+      produto_fornecedor: ['', Validators.required],
+      produto_preco_id: ['', Validators.required],
+      produto_preco: ['', Validators.required],
+      produto_unidade_id: ['', Validators.required],
+      produto_unidade: ['', Validators.required],
+      produto_categoria_id: ['', Validators.required],
+      produto_categoria: ['', Validators.required],
+      produto_quantidade_estoque: ['', Validators.required],
+      produto_data_validade: ['', Validators.required],
+      produto_codigo_barras: ['', Validators.required],
+      produto_estado: ['', Validators.required],
     });
   }
 

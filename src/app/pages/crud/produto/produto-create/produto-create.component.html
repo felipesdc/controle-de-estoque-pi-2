@@ -1,28 +1,93 @@
 <mat-card class="mat-elevation-z4">
-  <mat-card-title> Cadastrar o produto </mat-card-title>
+  <mat-card-title> Cadastrar um novo produto </mat-card-title>
   <form [formGroup]="produtoForm">
     <mat-form-field>
-      <input placeholder="Nome" matInput formControlName="nome" name="nome" />
+      <input
+        placeholder="Nome do Produto"
+        matInput
+        formControlName="produto_descricao"
+        name="produto_descricao"
+      />
     </mat-form-field>
     <p>
       <span
         *ngIf="
-          produtoFormControl.nome.touched &&
-          produtoFormControl.nome.errors?.required
+          produtoFormControl.produto_descricao.touched &&
+          produtoFormControl.produto_descricao.errors?.required
         "
         class="text-danger"
       >
-        Nome obrigatório
+        Nome Obrigatório
+      </span>
+    </p>
+
+    <mat-form-field>
+      <input
+        placeholder="ID do Fonecedor do Produto"
+        matInput
+        formControlName="produto_fornecedor_id"
+        name="produto_fornecedor_id"
+      />
+    </mat-form-field>
+    <p>
+      <span
+        *ngIf="
+          produtoFormControl.produto_fornecedor_id.touched &&
+          produtoFormControl.produto_fornecedor_id.errors?.required
+        "
+        class="text-danger"
+      >
+        ID do Fornecedor do Produto Obrigatório
+      </span>
+    </p>
+
+    <mat-form-field>
+      <input
+        placeholder="Nome do Fonecedor do Produto"
+        matInput
+        formControlName="produto_fornecedor"
+        name="produto_fornecedor"
+      />
+    </mat-form-field>
+    <p>
+      <span
+        *ngIf="
+          produtoFormControl.produto_fornecedor.touched &&
+          produtoFormControl.produto_fornecedor.errors?.required
+        "
+        class="text-danger"
+      >
+        Nome do Fornecedor do Produto Obrigatório
+      </span>
+    </p>
+
+    <mat-form-field>
+      <input
+        placeholder="ID do Preço do Produto"
+        matInput
+        formControlName="produto_preco_id"
+        name="produto_preco_id"
+      />
+    </mat-form-field>
+    <p>
+      <span
+        *ngIf="
+          produtoFormControl.produto_preco_id.touched &&
+          produtoFormControl.produto_preco_id.errors?.required
+        "
+        class="text-danger"
+      >
+        ID do Preço do Produto Obrigatório
       </span>
     </p>
 
     <mat-form-field>
       <input
         currencyMask
-        placeholder="Preço(R$)"
+        placeholder="Preço (R$)"
         matInput
-        formControlName="preco"
-        name="preco"
+        formControlName="produto_preco"
+        name="produto_preco"
         [options]="{
           prefix: 'R$ ',
           thousands: '.',
@@ -34,32 +99,172 @@
     <p>
       <span
         *ngIf="
-          produtoFormControl.preco.touched &&
-          produtoFormControl.preco.errors?.required
+          produtoFormControl.produto_preco.touched &&
+          produtoFormControl.produto_preco.errors?.required
         "
         class="text-danger"
       >
-        Preço obrigatório
+        Preço do Produto Obrigatório
       </span>
     </p>
 
     <mat-form-field>
       <input
-        placeholder="Quantidade"
+        placeholder="ID da Unidade do Produto"
         matInput
-        formControlName="quantidade"
-        name="quantidade"
+        formControlName="produto_unidade_id"
+        name="produto_unidade_id"
       />
     </mat-form-field>
     <p>
       <span
         *ngIf="
-          produtoFormControl.quantidade.touched &&
-          produtoFormControl.quantidade.errors?.required
+          produtoFormControl.produto_unidade_id.touched &&
+          produtoFormControl.produto_unidade_id.errors?.required
         "
         class="text-danger"
       >
-        Quantidade obrigatório
+        ID da Unidade do Produto Obrigatório
+      </span>
+    </p>
+
+    <mat-form-field>
+      <input
+        placeholder="Unidade do Produto"
+        matInput
+        formControlName="produto_unidade"
+        name="produto_unidade"
+      />
+    </mat-form-field>
+    <p>
+      <span
+        *ngIf="
+          produtoFormControl.produto_unidade.touched &&
+          produtoFormControl.produto_unidade.errors?.required
+        "
+        class="text-danger"
+      >
+        Unidade do Produto Obrigatória
+      </span>
+    </p>
+
+    <mat-form-field>
+      <input
+        placeholder="ID da Categoria do Produto"
+        matInput
+        formControlName="produto_categoria_id"
+        name="produto_categoria_id"
+      />
+    </mat-form-field>
+    <p>
+      <span
+        *ngIf="
+          produtoFormControl.produto_categoria_id.touched &&
+          produtoFormControl.produto_categoria_id.errors?.required
+        "
+        class="text-danger"
+      >
+        ID da Categoria do Produto Obrigatório
+      </span>
+    </p>
+
+    <mat-form-field>
+      <input
+        placeholder="Categoria do Produto"
+        matInput
+        formControlName="produto_categoria"
+        name="produto_categoria"
+      />
+    </mat-form-field>
+    <p>
+      <span
+        *ngIf="
+          produtoFormControl.produto_categoria.touched &&
+          produtoFormControl.produto_categoria.errors?.required
+        "
+        class="text-danger"
+      >
+        Categoria do Produto Obrigatória
+      </span>
+    </p>
+
+    <mat-form-field>
+      <input
+        placeholder="Quantidade em Estoque"
+        matInput
+        formControlName="produto_quantidade_estoque"
+        name="produto_quantidade_estoque"
+      />
+    </mat-form-field>
+    <p>
+      <span
+        *ngIf="
+          produtoFormControl.produto_quantidade_estoque.touched &&
+          produtoFormControl.produto_quantidade_estoque.errors?.required
+        "
+        class="text-danger"
+      >
+        Quantidade em Estoque Obrigatória
+      </span>
+    </p>
+
+    <mat-form-field>
+      <input
+        placeholder="Data de Validade"
+        matInput
+        formControlName="produto_data_validade"
+        name="produto_data_validade"
+      />
+    </mat-form-field>
+    <p>
+      <span
+        *ngIf="
+          produtoFormControl.produto_data_validade.touched &&
+          produtoFormControl.produto_data_validade.errors?.required
+        "
+        class="text-danger"
+      >
+        Data de Validade Obrigatória
+      </span>
+    </p>
+
+    <mat-form-field>
+      <input
+        placeholder="Código de Barras"
+        matInput
+        formControlName="produto_codigo_barras"
+        name="produto_codigo_barras"
+      />
+    </mat-form-field>
+    <p>
+      <span
+        *ngIf="
+          produtoFormControl.produto_codigo_barras.touched &&
+          produtoFormControl.produto_codigo_barras.errors?.required
+        "
+        class="text-danger"
+      >
+        Código de Barras Obrigatório
+      </span>
+    </p>
+
+    <mat-form-field>
+      <input
+        placeholder="Estado do Produto"
+        matInput
+        formControlName="produto_estado"
+        name="produto_estado"
+      />
+    </mat-form-field>
+    <p>
+      <span
+        *ngIf="
+          produtoFormControl.produto_estado.touched &&
+          produtoFormControl.produto_estado.errors?.required
+        "
+        class="text-danger"
+      >
+        Estado do Produto Obrigatório
       </span>
     </p>
   </form>

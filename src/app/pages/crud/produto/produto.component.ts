@@ -10,7 +10,19 @@ import { ProdutoService } from 'src/app/shared/services/produto.service';
 export class ProdutoComponent implements OnInit {
   produtos!: Produto[];
 
-  displayedColumns = ['id', 'nome', 'preco', 'quantidade', 'action'];
+  displayedColumns = [
+    'produto_id',
+    'produto_descricao',
+    'produto_fornecedor',
+    'produto_preco',
+    'produto_unidade',
+    'produto_categoria',
+    'produto_quantidade_estoque',
+    'produto_data_validade',
+    'produto_codigo_barras',
+    'produto_estado',
+    'produto_action',
+  ];
 
   constructor(private produtoService: ProdutoService) {}
 

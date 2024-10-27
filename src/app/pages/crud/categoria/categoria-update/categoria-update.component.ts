@@ -28,9 +28,7 @@ export class CategoriaUpdateComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.categoriaForm = fb.group({
-      nome: ['', Validators.required],
-      preco: ['', Validators.required],
-      quantidade: ['', Validators.required],
+      categoria_descricao: ['', Validators.required],
     });
   }
 
@@ -40,13 +38,7 @@ export class CategoriaUpdateComponent implements OnInit {
       .getCategoria(this.categoria_id)
       .subscribe((categoria) => {
         console.log(categoria);
-        this.categoriaForm.controls['nome'].setValue(
-          categoria.categoria_descricao
-        );
-        this.categoriaForm.controls['preco'].setValue(
-          categoria.categoria_descricao
-        );
-        this.categoriaForm.controls['quantidade'].setValue(
+        this.categoriaForm.controls['categoria_descricao'].setValue(
           categoria.categoria_descricao
         );
       });
@@ -57,7 +49,7 @@ export class CategoriaUpdateComponent implements OnInit {
       .updateExistingCategoria(this.categoriaForm.value, this.categoria_id)
       .subscribe((categoria) => {
         this.categoriaService.showMessage(
-          'Categoria atualizado com sucesso!',
+          'Categoria atualizada com sucesso!',
           'backsnack'
         );
         this.router.navigate(['/crud', 'categoria']);

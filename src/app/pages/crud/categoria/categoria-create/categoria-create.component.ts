@@ -22,9 +22,7 @@ export class CategoriaCreateComponent implements OnInit {
     private fb: UntypedFormBuilder
   ) {
     this.categoriaForm = fb.group({
-      nome: ['', Validators.required],
-      preco: ['', Validators.required],
-      quantidade: ['', Validators.required],
+      categoria_descricao: ['', Validators.required],
     });
   }
 
@@ -42,7 +40,7 @@ export class CategoriaCreateComponent implements OnInit {
   createCategoria(): void {
     this.categoriaService.createNewCategoria(this.categoria).subscribe(() => {
       this.categoriaService.showMessage(
-        'Categoria criado com sucesso!',
+        'Categoria criada com sucesso!',
         'backsnack'
       );
       this.router.navigate(['/crud', 'categoria']);

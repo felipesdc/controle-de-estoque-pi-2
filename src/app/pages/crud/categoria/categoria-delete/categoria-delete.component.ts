@@ -28,9 +28,7 @@ export class CategoriaDeleteComponent implements OnInit {
     private fb: UntypedFormBuilder
   ) {
     this.categoriaForm = fb.group({
-      nome: ['', Validators.required],
-      preco: ['', Validators.required],
-      quantidade: ['', Validators.required],
+      categoria_descricao: ['', Validators.required],
     });
   }
 
@@ -39,13 +37,7 @@ export class CategoriaDeleteComponent implements OnInit {
     this.categoriaService
       .getCategoria(this.categoriaId)
       .subscribe((categoria) => {
-        this.categoriaForm.controls['nome'].setValue(
-          categoria.categoria_descricao
-        );
-        this.categoriaForm.controls['preco'].setValue(
-          categoria.categoria_descricao
-        );
-        this.categoriaForm.controls['quantidade'].setValue(
+        this.categoriaForm.controls['categoria_descricao'].setValue(
           categoria.categoria_descricao
         );
       });
@@ -56,7 +48,7 @@ export class CategoriaDeleteComponent implements OnInit {
       .deleteExistingCategoria(this.categoriaId)
       .subscribe((categoria) => {
         this.categoriaService.showMessage(
-          'Categoria excluído com sucesso!',
+          'Categoria excluída com sucesso!',
           'backsnack'
         );
         this.router.navigate(['/crud', 'categoria']);

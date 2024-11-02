@@ -21,15 +21,6 @@ import { MaterialModule } from './shared/material/material.module';
 import { HomeModule } from './pages/home/home.module';
 import { SidenavComponent } from './shared/components/sidenav/sidenav.component';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
-import { EstadoPedidoService } from './shared/services/estado-pedido.service';
-import { FornecedorService } from './shared/services/fornecedor.service';
-import { HistoricoEstadoPedidoService } from './shared/services/historico-estado-pedido.service';
-import { ItemPedidoService } from './shared/services/item-pedido.service';
-import { MovimentacaoEstoqueService } from './shared/services/movimentacao-estoque.service';
-import { PerfilService } from './shared/services/perfil.service';
-import { PrecoService } from './shared/services/preco.service';
-import { UnidadeService } from './shared/services/unidade.service';
-import { UsuarioService } from './shared/services/usuario.service';
 
 import { ProdutoComponent } from './pages/crud/produto/produto.component';
 import { ProdutoCreateComponent } from './pages/crud/produto/produto-create/produto-create.component';
@@ -48,6 +39,60 @@ import { CategoriaCreateComponent } from './pages/crud/categoria/categoria-creat
 import { CategoriaUpdateComponent } from './pages/crud/categoria/categoria-update/categoria-update.component';
 import { CategoriaDeleteComponent } from './pages/crud/categoria/categoria-delete/categoria-delete.component';
 import { CategoriaService } from './shared/services/categoria.service';
+
+import { EstadoPedidoCreateComponent } from './pages/crud/estado-pedido/estado-pedido-create/estado-pedido-create.component';
+import { EstadoPedidoUpdateComponent } from './pages/crud/estado-pedido/estado-pedido-update/estado-pedido-update.component';
+import { EstadoPedidoComponent } from './pages/crud/estado-pedido/estado-pedido.component';
+import { EstadoPedidoDeleteComponent } from './pages/crud/estado-pedido/estado-pedido-delete/estado-pedido-delete.component';
+import { EstadoPedidoService } from './shared/services/estado-pedido.service';
+
+import { FornecedorCreateComponent } from './pages/crud/fornecedor/fornecedor-create/fornecedor-create.component';
+import { FornecedorUpdateComponent } from './pages/crud/fornecedor/fornecedor-update/fornecedor-update.component';
+import { FornecedorComponent } from './pages/crud/fornecedor/fornecedor.component';
+import { FornecedorDeleteComponent } from './pages/crud/fornecedor/fornecedor-delete/fornecedor-delete.component';
+import { FornecedorService } from './shared/services/fornecedor.service';
+
+import { UsuarioCreateComponent } from './pages/crud/usuario/usuario-create/usuario-create.component';
+import { UsuarioUpdateComponent } from './pages/crud/usuario/usuario-update/usuario-update.component';
+import { UsuarioComponent } from './pages/crud/usuario/usuario.component';
+import { UsuarioDeleteComponent } from './pages/crud/usuario/usuario-delete/usuario-delete.component';
+import { UsuarioService } from './shared/services/usuario.service';
+
+import { UnidadeCreateComponent } from './pages/crud/unidade/unidade-create/unidade-create.component';
+import { UnidadeUpdateComponent } from './pages/crud/unidade/unidade-update/unidade-update.component';
+import { UnidadeComponent } from './pages/crud/unidade/unidade.component';
+import { UnidadeDeleteComponent } from './pages/crud/unidade/unidade-delete/unidade-delete.component';
+import { UnidadeService } from './shared/services/unidade.service';
+
+import { PerfilCreateComponent } from './pages/crud/perfil/perfil-create/perfil-create.component';
+import { PerfilUpdateComponent } from './pages/crud/perfil/perfil-update/perfil-update.component';
+import { PerfilComponent } from './pages/crud/perfil/perfil.component';
+import { PerfilDeleteComponent } from './pages/crud/perfil/perfil-delete/perfil-delete.component';
+import { PerfilService } from './shared/services/perfil.service';
+
+import { PrecoCreateComponent } from './pages/crud/preco/preco-create/preco-create.component';
+import { PrecoUpdateComponent } from './pages/crud/preco/preco-update/preco-update.component';
+import { PrecoComponent } from './pages/crud/preco/preco.component';
+import { PrecoDeleteComponent } from './pages/crud/preco/preco-delete/preco-delete.component';
+import { PrecoService } from './shared/services/preco.service';
+
+import { MovimentacaoEstoqueCreateComponent } from './pages/crud/movimentacao-estoque/movimentacao-estoque-create/movimentacao-estoque-create.component';
+import { MovimentacaoEstoqueUpdateComponent } from './pages/crud/movimentacao-estoque/movimentacao-estoque-update/movimentacao-estoque-update.component';
+import { MovimentacaoEstoqueComponent } from './pages/crud/movimentacao-estoque/movimentacao-estoque.component';
+import { MovimentacaoEstoqueDeleteComponent } from './pages/crud/movimentacao-estoque/movimentacao-estoque-delete/movimentacao-estoque-delete.component';
+import { MovimentacaoEstoqueService } from './shared/services/movimentacao-estoque.service';
+
+import { ItemPedidoCreateComponent } from './pages/crud/item-pedido/item-pedido-create/item-pedido-create.component';
+import { ItemPedidoUpdateComponent } from './pages/crud/item-pedido/item-pedido-update/item-pedido-update.component';
+import { ItemPedidoComponent } from './pages/crud/item-pedido/item-pedido.component';
+import { ItemPedidoDeleteComponent } from './pages/crud/item-pedido/item-pedido-delete/item-pedido-delete.component';
+import { ItemPedidoService } from './shared/services/item-pedido.service';
+
+import { HistoricoEstadoPedidoCreateComponent } from './pages/crud/historico-estado-pedido/historico-estado-pedido-create/historico-estado-pedido-create.component';
+import { HistoricoEstadoPedidoUpdateComponent } from './pages/crud/historico-estado-pedido/historico-estado-pedido-update/historico-estado-pedido-update.component';
+import { HistoricoEstadoPedidoComponent } from './pages/crud/historico-estado-pedido/historico-estado-pedido.component';
+import { HistoricoEstadoPedidoDeleteComponent } from './pages/crud/historico-estado-pedido/historico-estado-pedido-delete/historico-estado-pedido-delete.component';
+import { HistoricoEstadoPedidoService } from './shared/services/historico-estado-pedido.service';
 
 registerLocaleData(localePt);
 
@@ -72,6 +117,42 @@ registerLocaleData(localePt);
     CategoriaUpdateComponent,
     CategoriaComponent,
     CategoriaDeleteComponent,
+    EstadoPedidoCreateComponent,
+    EstadoPedidoUpdateComponent,
+    EstadoPedidoComponent,
+    EstadoPedidoDeleteComponent,
+    FornecedorCreateComponent,
+    FornecedorUpdateComponent,
+    FornecedorComponent,
+    FornecedorDeleteComponent,
+    UsuarioCreateComponent,
+    UsuarioUpdateComponent,
+    UsuarioComponent,
+    UsuarioDeleteComponent,
+    UnidadeCreateComponent,
+    UnidadeUpdateComponent,
+    UnidadeComponent,
+    UnidadeDeleteComponent,
+    PerfilCreateComponent,
+    PerfilUpdateComponent,
+    PerfilComponent,
+    PerfilDeleteComponent,
+    PrecoCreateComponent,
+    PrecoUpdateComponent,
+    PrecoComponent,
+    PrecoDeleteComponent,
+    MovimentacaoEstoqueCreateComponent,
+    MovimentacaoEstoqueUpdateComponent,
+    MovimentacaoEstoqueComponent,
+    MovimentacaoEstoqueDeleteComponent,
+    ItemPedidoCreateComponent,
+    ItemPedidoUpdateComponent,
+    ItemPedidoComponent,
+    ItemPedidoDeleteComponent,
+    HistoricoEstadoPedidoCreateComponent,
+    HistoricoEstadoPedidoUpdateComponent,
+    HistoricoEstadoPedidoComponent,
+    HistoricoEstadoPedidoDeleteComponent,
   ],
   bootstrap: [AppComponent],
   imports: [

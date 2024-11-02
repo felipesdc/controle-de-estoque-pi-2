@@ -56,7 +56,6 @@ export class ProdutoCreateComponent implements OnInit {
         'backsnack'
       );
       this.router.navigate(['/crud', 'produto']);
-      console.log(this.produto);
     });
   }
 

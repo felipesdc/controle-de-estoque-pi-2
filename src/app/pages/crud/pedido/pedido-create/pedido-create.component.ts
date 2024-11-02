@@ -50,7 +50,6 @@ export class PedidoCreateComponent implements OnInit {
     this.pedidoService.createNewPedido(this.pedido).subscribe(() => {
       this.pedidoService.showMessage('Pedido criado com sucesso!', 'backsnack');
       this.router.navigate(['/crud', 'pedido']);
-      console.log(this.pedido);
     });
   }
 

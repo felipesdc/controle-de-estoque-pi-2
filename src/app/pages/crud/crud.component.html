@@ -4,7 +4,7 @@
   color="primary"
   (click)="navigateToProdutoCreate()"
 >
-  Cadastrar um produto
+  Cadastrar um Produto
 </button>
 
 <button
@@ -13,7 +13,7 @@
   color="primary"
   (click)="navigateToPedidoCreate()"
 >
-  Cadastrar um pedido
+  Cadastrar um Pedido
 </button>
 
 <button
@@ -22,7 +22,88 @@
   color="primary"
   (click)="navigateToCategoriaCreate()"
 >
-  Cadastrar uma categoria
+  Cadastrar uma Categoria
+</button>
+
+<button
+  *ngIf="itemSelecionado === 'estado-pedido'"
+  mat-raised-button
+  color="primary"
+  (click)="navigateToEstadoPedidoCreate()"
+>
+  Cadastrar um Estado de Pedido
+</button>
+
+<button
+  *ngIf="itemSelecionado === 'fornecedor'"
+  mat-raised-button
+  color="primary"
+  (click)="navigateToFornecedorCreate()"
+>
+  Cadastrar um Fornecedor
+</button>
+
+<button
+  *ngIf="itemSelecionado === 'usuario'"
+  mat-raised-button
+  color="primary"
+  (click)="navigateToUsuarioCreate()"
+>
+  Cadastrar um Usuário
+</button>
+
+<button
+  *ngIf="itemSelecionado === 'unidade'"
+  mat-raised-button
+  color="primary"
+  (click)="navigateToUnidadeCreate()"
+>
+  Cadastrar uma Unidade
+</button>
+
+<button
+  *ngIf="itemSelecionado === 'perfil'"
+  mat-raised-button
+  color="primary"
+  (click)="navigateToPerfilCreate()"
+>
+  Cadastrar um Perfil
+</button>
+
+<button
+  *ngIf="itemSelecionado === 'preco'"
+  mat-raised-button
+  color="primary"
+  (click)="navigateToPrecoCreate()"
+>
+  Cadastrar um Preço
+</button>
+
+<button
+  *ngIf="itemSelecionado === 'movimentacao-estoque'"
+  mat-raised-button
+  color="primary"
+  (click)="navigateToMovimentacaoEstoqueCreate()"
+>
+  Cadastrar uma Movimentação de Estoque
+</button>
+
+<button
+  *ngIf="itemSelecionado === 'item-pedido'"
+  mat-raised-button
+  color="primary"
+  (click)="navigateToItemPedidoCreate()"
+>
+  Cadastrar um Item de Pedido
+</button>
+
+<button
+  *ngIf="itemSelecionado === 'historico-estado-pedido'"
+  mat-raised-button
+  color="primary"
+  (click)="navigateToHistoricoEstadoPedidoCreate()"
+>
+  Cadastrar um Histórico de Estado de Pedido
 </button>
 
 <div *ngIf="itemSelecionado === 'produto'">
@@ -35,4 +116,40 @@
 
 <div *ngIf="itemSelecionado === 'categoria'">
   <app-crud-categoria></app-crud-categoria>
+</div>
+
+<div *ngIf="itemSelecionado === 'estado-pedido'">
+  <app-crud-estado-pedido></app-crud-estado-pedido>
+</div>
+
+<div *ngIf="itemSelecionado === 'fornecedor'">
+  <app-crud-fornecedor></app-crud-fornecedor>
+</div>
+
+<div *ngIf="itemSelecionado === 'usuario'">
+  <app-crud-usuario></app-crud-usuario>
+</div>
+
+<div *ngIf="itemSelecionado === 'unidade'">
+  <app-crud-unidade></app-crud-unidade>
+</div>
+
+<div *ngIf="itemSelecionado === 'perfil'">
+  <app-crud-perfil></app-crud-perfil>
+</div>
+
+<div *ngIf="itemSelecionado === 'preco'">
+  <app-crud-preco></app-crud-preco>
+</div>
+
+<div *ngIf="itemSelecionado === 'movimentacao-estoque'">
+  <app-crud-movimentacao-estoque></app-crud-movimentacao-estoque>
+</div>
+
+<div *ngIf="itemSelecionado === 'item-pedido'">
+  <app-crud-item-pedido></app-crud-item-pedido>
+</div>
+
+<div *ngIf="itemSelecionado === 'historico-estado-pedido'">
+  <app-crud-historico-estado-pedido></app-crud-historico-estado-pedido>
 </div>

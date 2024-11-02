@@ -1,0 +1,87 @@
+import { Component, OnInit } from '@angular/core';
+import {
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UsuarioService } from 'src/app/shared/services/usuario.service';
+
+@Component({
+  selector: 'app-usuario-delete',
+  templateUrl: './usuario-delete.component.html',
+  styleUrls: ['./usuario-delete.component.scss'],
+})
+export class UsuarioDeleteComponent implements OnInit {
+  usuario_id: string;
+
+  usuarioForm: UntypedFormGroup;
+
+  get usuarioFormControl() {
+    return this.usuarioForm.controls;
+  }
+
+  constructor(
+    private usuarioService: UsuarioService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private fb: UntypedFormBuilder
+  ) {
+    this.usuarioForm = fb.group({
+      usuario_id: ['', Validators.required],
+      usuario_nome: ['', Validators.required],
+      usuario_email: ['', Validators.required],
+      usuario_password: ['', Validators.required],
+      usuario_nome_completo: ['', Validators.required],
+      usuario_inscricao: ['', Validators.required],
+      usuario_perfil_id: ['', Validators.required],
+      usuario_perfil: ['', Validators.required],
+      usuario_status: ['', Validators.required],
+    });
+  }
+
+  ngOnInit(): void {
+    this.usuario_id = this.route.snapshot.paramMap.get('usuario_id');
+    this.usuarioForm.controls['usuario_id'].setValue(this.usuario_id);
+    this.usuarioService.getUsuario(this.usuario_id).subscribe((usuario) => {
+      this.usuarioForm.controls['usuario_nome'].setValue(usuario.usuario_nome);
+      this.usuarioForm.controls['usuario_email'].setValue(
+        usuario.usuario_email
+      );
+      this.usuarioForm.controls['usuario_password'].setValue(
+        usuario.usuario_password
+      );
+      this.usuarioForm.controls['usuario_nome_completo'].setValue(
+        usuario.usuario_nome_completo
+      );
+      this.usuarioForm.controls['usuario_inscricao'].setValue(
+        usuario.usuario_inscricao
+      );
+      this.usuarioForm.controls['usuario_perfil_id'].setValue(
+        usuario.usuario_perfil_id
+      );
+      this.usuarioForm.controls['usuario_perfil'].setValue(
+        usuario.usuario_perfil
+      );
+      this.usuarioForm.controls['usuario_status'].setValue(
+        usuario.usuario_status
+      );
+    });
+  }
+
+  deleteUsuario(): void {
+    this.usuarioService
+      .deleteExistingUsuario(this.usuario_id)
+      .subscribe((usuario) => {
+        this.usuarioService.showMessage(
+          'Usuário excluído com sucesso!',
+          'backsnack'
+        );
+        this.router.navigate(['/crud', 'usuario']);
+      });
+  }
+
+  cancel(): void {
+    this.router.navigate(['/crud', 'usuario']);
+  }
+}

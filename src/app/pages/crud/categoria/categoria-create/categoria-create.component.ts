@@ -44,7 +44,6 @@ export class CategoriaCreateComponent implements OnInit {
         'backsnack'
       );
       this.router.navigate(['/crud', 'categoria']);
-      console.log(this.categoria);
     });
   }
 

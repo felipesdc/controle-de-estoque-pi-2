@@ -6,5 +6,6 @@ export type Usuario = {
   usuario_nome_completo: string;
   usuario_inscricao: Date;
   usuario_perfil_id: number;
+  usuario_perfil?: string;
   usuario_status: boolean;
 };

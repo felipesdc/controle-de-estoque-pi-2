@@ -12,11 +12,12 @@ export class ItemPedidoComponent implements OnInit {
 
   displayedColumns = [
     'item_pedido_id',
-    'item_pedido_pedido',
+    'item_pedido_pedido_id',
     'item_pedido_produto',
     'item_pedido_unidade',
     'item_pedido_preco',
     'item_pedido_quantidade',
+    'item_pedido_total',
     'item_pedido_action',
   ];
 

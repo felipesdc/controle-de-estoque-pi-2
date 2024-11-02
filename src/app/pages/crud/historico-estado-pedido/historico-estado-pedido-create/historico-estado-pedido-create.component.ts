@@ -50,7 +50,6 @@ export class HistoricoEstadoPedidoCreateComponent implements OnInit {
           'backsnack'
         );
         this.router.navigate(['/crud', 'historico-estado-pedido']);
-        console.log(this.historicoEstadoPedido);
       });
   }
 

@@ -32,7 +32,7 @@ export class PrecoDeleteComponent implements OnInit {
       preco_compra: ['', Validators.required],
       preco_venda: ['', Validators.required],
       preco_data_inicial: ['', Validators.required],
-      preco_data_final: ['', Validators.required],
+      preco_data_final: ['', Validators.nullValidator],
     });
   }
 

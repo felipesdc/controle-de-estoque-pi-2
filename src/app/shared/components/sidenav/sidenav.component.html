@@ -1,11 +1,12 @@
 <aside>
   <mat-sidenav-container>
-    <mat-sidenav mode="side" opened fixedInViewport>
+    <mat-sidenav #sidenav mode="side" [(opened)]="opened" fixedInViewport>
       <span>
         <a routerLink="">
           <img src="assets/logo.png" alt="" />
         </a>
       </span>
+
       <mat-nav-list class="list">
         <mat-list-item>
           <a routerLink="">

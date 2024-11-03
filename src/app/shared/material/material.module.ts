@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -24,6 +25,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatIconModule,
     MatSnackBarModule,
     MatTableModule,
+    MatDatepickerModule,
   ],
 })
 export class MaterialModule {}

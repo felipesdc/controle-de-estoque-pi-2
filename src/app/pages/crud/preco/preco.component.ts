@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Preco } from 'src/app/shared/models/preco.model';
 import { PrecoService } from 'src/app/shared/services/preco.service';
-import extractDate from 'src/app/shared/helpers/extract-date';
+import extractLocaleDate from 'src/app/shared/helpers/extract-locale-date';
 
 @Component({
   selector: 'app-crud-preco',
@@ -26,7 +26,7 @@ export class PrecoComponent implements OnInit {
     this.precoService.getPrecos().subscribe((precos) => {
       this.precos = precos.map((preco: Preco) => {
         let precoSemTratamento = preco;
-        let preco_data_inicial = extractDate(
+        let preco_data_inicial = extractLocaleDate(
           precoSemTratamento.preco_data_inicial.toString() || ''
         );
         let preco_data_final: string;
@@ -36,7 +36,7 @@ export class PrecoComponent implements OnInit {
         ) {
           preco_data_final = null;
         } else {
-          preco_data_final = extractDate(
+          preco_data_final = extractLocaleDate(
             precoSemTratamento.preco_data_final.toString() || ''
           );
         }

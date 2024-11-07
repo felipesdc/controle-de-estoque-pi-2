@@ -5,6 +5,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import extractLocaleDate from 'src/app/shared/helpers/extract-locale-date';
+import { Preco } from 'src/app/shared/models/preco.model';
 import { PrecoService } from 'src/app/shared/services/preco.service';
 
 @Component({
@@ -39,14 +41,14 @@ export class PrecoDeleteComponent implements OnInit {
   ngOnInit(): void {
     this.preco_id = this.route.snapshot.paramMap.get('preco_id');
     this.precoForm.controls['preco_id'].setValue(this.preco_id);
-    this.precoService.getPreco(this.preco_id).subscribe((preco) => {
+    this.precoService.getPreco(this.preco_id).subscribe((preco: Preco) => {
       this.precoForm.controls['preco_compra'].setValue(preco.preco_compra);
       this.precoForm.controls['preco_venda'].setValue(preco.preco_venda);
       this.precoForm.controls['preco_data_inicial'].setValue(
-        preco.preco_data_inicial
+        extractLocaleDate(preco.preco_data_inicial)
       );
       this.precoForm.controls['preco_data_final'].setValue(
-        preco.preco_data_final
+        extractLocaleDate(preco.preco_data_final)
       );
     });
   }

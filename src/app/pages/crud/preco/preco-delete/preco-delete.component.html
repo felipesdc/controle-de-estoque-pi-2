@@ -13,21 +13,35 @@
 
     <mat-form-field>
       <input
+        currencyMask
         placeholder="Preço de Compra"
         matInput
         formControlName="preco_compra"
         name="preco_compra"
         readonly=""
+        [options]="{
+          prefix: 'R$ ',
+          thousands: '.',
+          decimal: ',',
+          align: 'left'
+        }"
       />
     </mat-form-field>
 
     <mat-form-field>
       <input
+        currencyMask
         placeholder="Preço de Venda"
         matInput
         formControlName="preco_venda"
         name="preco_venda"
         readonly=""
+        [options]="{
+          prefix: 'R$ ',
+          thousands: '.',
+          decimal: ',',
+          align: 'left'
+        }"
       />
     </mat-form-field>
 

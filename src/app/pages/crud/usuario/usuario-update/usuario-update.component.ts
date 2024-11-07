@@ -5,6 +5,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Perfil } from 'src/app/shared/models/perfil.model';
+import { PerfilService } from 'src/app/shared/services/perfil.service';
 import { UsuarioService } from 'src/app/shared/services/usuario.service';
 
 @Component({
@@ -17,12 +19,15 @@ export class UsuarioUpdateComponent implements OnInit {
 
   usuarioForm: UntypedFormGroup;
 
+  perfis!: Perfil[];
+
   get usuarioFormControl() {
     return this.usuarioForm.controls;
   }
 
   constructor(
     private usuarioService: UsuarioService,
+    private perfilService: PerfilService,
     private fb: UntypedFormBuilder,
     private router: Router,
     private route: ActivatedRoute
@@ -41,9 +46,15 @@ export class UsuarioUpdateComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.perfilService
+      .getPerfis()
+      .subscribe((perfis) => (this.perfis = perfis));
     this.usuario_id = this.route.snapshot.paramMap.get('usuario_id');
     this.usuarioForm.controls['usuario_id'].setValue(this.usuario_id);
     this.usuarioService.getUsuario(this.usuario_id).subscribe((usuario) => {
+      let usuario_perfil = this.perfis.find(
+        (perfil) => perfil.perfil_id === usuario.usuario_perfil_id
+      ).perfil_nome;
       this.usuarioForm.controls['usuario_nome'].setValue(usuario.usuario_nome);
       this.usuarioForm.controls['usuario_email'].setValue(
         usuario.usuario_email
@@ -60,9 +71,7 @@ export class UsuarioUpdateComponent implements OnInit {
       this.usuarioForm.controls['usuario_perfil_id'].setValue(
         usuario.usuario_perfil_id
       );
-      this.usuarioForm.controls['usuario_perfil'].setValue(
-        usuario.usuario_perfil
-      );
+      this.usuarioForm.controls['usuario_perfil'].setValue(usuario_perfil);
       this.usuarioForm.controls['usuario_status'].setValue(
         usuario.usuario_status
       );
@@ -83,5 +92,11 @@ export class UsuarioUpdateComponent implements OnInit {
 
   cancel(): void {
     this.router.navigate(['/crud', 'usuario']);
+  }
+
+  alteraNomeDoPerfil(perfil_id: number) {
+    this.usuarioForm.controls['usuario_perfil'].setValue(
+      this.perfis.find((perfil) => perfil.perfil_id === perfil_id).perfil_nome
+    );
   }
 }

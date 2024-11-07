@@ -3,7 +3,7 @@
   <form [formGroup]="precoForm">
     <mat-form-field>
       <input
-        placeholder="ID da Preco"
+        placeholder="ID do Preco"
         matInput
         formControlName="preco_id"
         name="preco_id"
@@ -12,11 +12,19 @@
     </mat-form-field>
 
     <mat-form-field>
+      <mat-label>Preço de Compra</mat-label>
       <input
+        currencyMask
         placeholder="Preço de Compra"
         matInput
         formControlName="preco_compra"
         name="preco_compra"
+        [options]="{
+          prefix: 'R$ ',
+          thousands: '.',
+          decimal: ',',
+          align: 'left'
+        }"
       />
     </mat-form-field>
     <p>
@@ -32,11 +40,19 @@
     </p>
 
     <mat-form-field>
+      <mat-label>Preço de Venda</mat-label>
       <input
+        currencyMask
         placeholder="Preço de Venda"
         matInput
         formControlName="preco_venda"
         name="preco_venda"
+        [options]="{
+          prefix: 'R$ ',
+          thousands: '.',
+          decimal: ',',
+          align: 'left'
+        }"
       />
     </mat-form-field>
     <p>
@@ -52,12 +68,20 @@
     </p>
 
     <mat-form-field>
+      <mat-label>Data Inicial</mat-label>
       <input
         placeholder="Data Inicial do Preço"
         matInput
         formControlName="preco_data_inicial"
         name="preco_data_inicial"
+        [matDatepicker]="pickerInicial"
       />
+      <mat-hint>DD/MM/AAAA</mat-hint>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="pickerInicial"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #pickerInicial></mat-datepicker>
     </mat-form-field>
     <p>
       <span
@@ -72,24 +96,21 @@
     </p>
 
     <mat-form-field>
+      <mat-label>Data Final</mat-label>
       <input
         placeholder="Data Final do Preço"
         matInput
         formControlName="preco_data_final"
         name="preco_data_final"
+        [matDatepicker]="pickerFinal"
       />
+      <mat-hint>DD/MM/AAAA</mat-hint>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="pickerFinal"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #pickerFinal></mat-datepicker>
     </mat-form-field>
-    <p>
-      <span
-        *ngIf="
-          precoFormControl.preco_data_final.touched &&
-          precoFormControl.preco_data_final.errors?.required
-        "
-        class="text-danger"
-      >
-        Data Final do Preço Obrigatória
-      </span>
-    </p>
   </form>
 
   <button

@@ -5,6 +5,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import extractDate from 'src/app/shared/helpers/extract-date';
+import { Preco } from 'src/app/shared/models/preco.model';
 import { PrecoService } from 'src/app/shared/services/preco.service';
 
 @Component({
@@ -52,8 +54,23 @@ export class PrecoUpdateComponent implements OnInit {
   }
 
   updatePreco(): void {
+    let precoSemTratamento = this.precoForm.value as Preco;
+    let preco_data_inicial = extractDate(
+      precoSemTratamento.preco_data_inicial.toString()
+    );
+    let preco_data_final = extractDate(
+      precoSemTratamento.preco_data_final.toString()
+    );
+    if (preco_data_final === '') {
+      preco_data_final = null;
+    }
+    const preco = {
+      ...precoSemTratamento,
+      preco_data_inicial,
+      preco_data_final,
+    };
     this.precoService
-      .updateExistingPreco(this.precoForm.value, this.preco_id)
+      .updateExistingPreco(preco, this.preco_id)
       .subscribe((preco) => {
         this.precoService.showMessage(
           'Preço atualizado com sucesso!',

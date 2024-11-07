@@ -24,9 +24,7 @@
 
     <ng-container matColumnDef="usuario_password">
       <th mat-header-cell *matHeaderCellDef>Senha do Usuário</th>
-      <td mat-cell *matCellDef="let usuario">
-        {{ usuario.usuario_password }}
-      </td>
+      <td mat-cell *matCellDef="let usuario">**********</td>
     </ng-container>
 
     <ng-container matColumnDef="usuario_nome_completo">
@@ -39,7 +37,7 @@
     <ng-container matColumnDef="usuario_inscricao">
       <th mat-header-cell *matHeaderCellDef>Inscrição do Usuário</th>
       <td mat-cell *matCellDef="let usuario">
-        {{ usuario.usuario_inscricao }}
+        {{ usuario.usuario_inscricao | date }}
       </td>
     </ng-container>
 

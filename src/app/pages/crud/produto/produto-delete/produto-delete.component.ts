@@ -5,7 +5,15 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Categoria } from 'src/app/shared/models/categoria.model';
+import { Fornecedor } from 'src/app/shared/models/fornecedor.model';
+import { Preco } from 'src/app/shared/models/preco.model';
+import { Unidade } from 'src/app/shared/models/unidade.model';
+import { CategoriaService } from 'src/app/shared/services/categoria.service';
+import { FornecedorService } from 'src/app/shared/services/fornecedor.service';
+import { PrecoService } from 'src/app/shared/services/preco.service';
 import { ProdutoService } from 'src/app/shared/services/produto.service';
+import { UnidadeService } from 'src/app/shared/services/unidade.service';
 
 @Component({
   selector: 'app-produto-delete',
@@ -17,12 +25,21 @@ export class ProdutoDeleteComponent implements OnInit {
 
   produtoForm: UntypedFormGroup;
 
+  fornecedores!: Fornecedor[];
+  precos!: Preco[];
+  unidades!: Unidade[];
+  categorias!: Categoria[];
+
   get produtoFormControl() {
     return this.produtoForm.controls;
   }
 
   constructor(
     private produtoService: ProdutoService,
+    private fornecedorService: FornecedorService,
+    private precoService: PrecoService,
+    private unidadeService: UnidadeService,
+    private categoriaService: CategoriaService,
     private router: Router,
     private route: ActivatedRoute,
     private fb: UntypedFormBuilder
@@ -48,33 +65,66 @@ export class ProdutoDeleteComponent implements OnInit {
   ngOnInit(): void {
     this.produto_id = this.route.snapshot.paramMap.get('produto_id');
     this.produtoForm.controls['produto_id'].setValue(this.produto_id);
+    this.fornecedorService.getFornecedores().subscribe({
+      next: (fornecedores) => (this.fornecedores = fornecedores),
+      complete: () => {
+        this.precoService.getPrecos().subscribe({
+          next: (precos) => (this.precos = precos),
+          complete: () => {
+            this.unidadeService.getUnidades().subscribe({
+              next: (unidades) => (this.unidades = unidades),
+              complete: () => {
+                this.categoriaService.getCategorias().subscribe({
+                  next: (categorias) => (this.categorias = categorias),
+                  complete: () => {
+                    this.carregaProduto();
+                  },
+                });
+              },
+            });
+          },
+        });
+      },
+    });
+  }
+
+  carregaProduto(): void {
     this.produtoService.getProduto(this.produto_id).subscribe((produto) => {
       this.produtoForm.controls['produto_descricao'].setValue(
         produto.produto_descricao
       );
       this.produtoForm.controls['produto_fornecedor_id'].setValue(
-        produto.produto_descricao
+        produto.produto_fornecedor_id
       );
       this.produtoForm.controls['produto_fornecedor'].setValue(
-        produto.produto_fornecedor
+        this.fornecedores.find(
+          (fornecedor) =>
+            fornecedor.fornecedor_id === produto.produto_fornecedor_id
+        ).fornecedor_nome
       );
       this.produtoForm.controls['produto_preco_id'].setValue(
         produto.produto_preco_id
       );
       this.produtoForm.controls['produto_preco'].setValue(
-        produto.produto_preco
+        this.precos.find((preco) => preco.preco_id === produto.produto_preco_id)
+          .preco_compra
       );
       this.produtoForm.controls['produto_unidade_id'].setValue(
         produto.produto_unidade_id
       );
       this.produtoForm.controls['produto_unidade'].setValue(
-        produto.produto_unidade
+        this.unidades.find(
+          (unidade) => unidade.unidade_id === produto.produto_unidade_id
+        ).unidade_descricao
       );
       this.produtoForm.controls['produto_categoria_id'].setValue(
         produto.produto_categoria_id
       );
       this.produtoForm.controls['produto_categoria'].setValue(
-        produto.produto_categoria
+        this.categorias.find(
+          (categorias) =>
+            categorias.categoria_id === produto.produto_categoria_id
+        ).categoria_descricao
       );
       this.produtoForm.controls['produto_quantidade_estoque'].setValue(
         produto.produto_quantidade_estoque
@@ -86,7 +136,7 @@ export class ProdutoDeleteComponent implements OnInit {
         produto.produto_codigo_barras
       );
       this.produtoForm.controls['produto_estado'].setValue(
-        produto.produto_estado
+        produto.produto_estado.toString()
       );
     });
   }

@@ -4,7 +4,7 @@ export type Produto = {
   produto_fornecedor_id: number;
   produto_fornecedor?: string;
   produto_preco_id: number;
-  produto_preco?: number;
+  produto_preco?: string;
   produto_unidade_id: number;
   produto_unidade?: string;
   produto_categoria_id: number;

@@ -32,12 +32,18 @@
     </p>
 
     <mat-form-field>
-      <input
-        placeholder="ID do Fonecedor do Produto"
-        matInput
+      <mat-label>ID do Fornecedor do Produto</mat-label>
+      <mat-select
         formControlName="produto_fornecedor_id"
         name="produto_fornecedor_id"
-      />
+        (selectionChange)="alteraNomeDoFornecedor($event.value)"
+      >
+        @for (fornecedor of fornecedores; track fornecedor) {
+        <mat-option [value]="fornecedor.fornecedor_id">{{
+          fornecedor.fornecedor_id + " - " + fornecedor.fornecedor_nome
+        }}</mat-option>
+        }
+      </mat-select>
     </mat-form-field>
     <p>
       <span
@@ -47,7 +53,7 @@
         "
         class="text-danger"
       >
-        ID do Fornecedor do Produto Obrigatório
+        ID do Preço do Produto Obrigatório
       </span>
     </p>
 
@@ -57,27 +63,24 @@
         matInput
         formControlName="produto_fornecedor"
         name="produto_fornecedor"
+        readonly=""
       />
     </mat-form-field>
-    <p>
-      <span
-        *ngIf="
-          produtoFormControl.produto_fornecedor.touched &&
-          produtoFormControl.produto_fornecedor.errors?.required
-        "
-        class="text-danger"
-      >
-        Nome do Fornecedor do Produto Obrigatório
-      </span>
-    </p>
 
     <mat-form-field>
-      <input
-        placeholder="ID do Preço do Produto"
-        matInput
+      <mat-label>ID do Preço do Produto</mat-label>
+      <mat-select
         formControlName="produto_preco_id"
         name="produto_preco_id"
-      />
+        (selectionChange)="alteraValorDoPreco($event.value)"
+      >
+        @for (preco of precos; track preco) {
+        <mat-option [value]="preco.preco_id"
+          >{{ preco.preco_id }} -
+          {{ preco.preco_compra | currency : ".1-2" : "R$" }}</mat-option
+        >
+        }
+      </mat-select>
     </mat-form-field>
     <p>
       <span
@@ -104,27 +107,24 @@
           decimal: ',',
           align: 'left'
         }"
+        readonly=""
       />
     </mat-form-field>
-    <p>
-      <span
-        *ngIf="
-          produtoFormControl.produto_preco.touched &&
-          produtoFormControl.produto_preco.errors?.required
-        "
-        class="text-danger"
-      >
-        Preço do Produto Obrigatório
-      </span>
-    </p>
 
     <mat-form-field>
-      <input
-        placeholder="ID da Unidade do Produto"
-        matInput
+      <mat-label>ID da Unidade do Produto</mat-label>
+      <mat-select
         formControlName="produto_unidade_id"
         name="produto_unidade_id"
-      />
+        (selectionChange)="alteraDescricaoDaUnidade($event.value)"
+      >
+        @for (unidade of unidades; track unidade) {
+        <mat-option [value]="unidade.unidade_id"
+          >{{ unidade.unidade_id }} -
+          {{ unidade.unidade_descricao }}</mat-option
+        >
+        }
+      </mat-select>
     </mat-form-field>
     <p>
       <span
@@ -144,27 +144,24 @@
         matInput
         formControlName="produto_unidade"
         name="produto_unidade"
+        readonly=""
       />
     </mat-form-field>
-    <p>
-      <span
-        *ngIf="
-          produtoFormControl.produto_unidade.touched &&
-          produtoFormControl.produto_unidade.errors?.required
-        "
-        class="text-danger"
-      >
-        Unidade do Produto Obrigatória
-      </span>
-    </p>
 
     <mat-form-field>
-      <input
-        placeholder="ID da Categoria do Produto"
-        matInput
+      <mat-label>ID da Categoria do Produto</mat-label>
+      <mat-select
         formControlName="produto_categoria_id"
         name="produto_categoria_id"
-      />
+        (selectionChange)="alteraDescricaoDaCategoria($event.value)"
+      >
+        @for (categoria of categorias; track categoria) {
+        <mat-option [value]="categoria.categoria_id"
+          >{{ categoria.categoria_id }} -
+          {{ categoria.categoria_descricao }}</mat-option
+        >
+        }
+      </mat-select>
     </mat-form-field>
     <p>
       <span
@@ -184,19 +181,9 @@
         matInput
         formControlName="produto_categoria"
         name="produto_categoria"
+        readonly=""
       />
     </mat-form-field>
-    <p>
-      <span
-        *ngIf="
-          produtoFormControl.produto_categoria.touched &&
-          produtoFormControl.produto_categoria.errors?.required
-        "
-        class="text-danger"
-      >
-        Categoria do Produto Obrigatória
-      </span>
-    </p>
 
     <mat-form-field>
       <input
@@ -219,12 +206,20 @@
     </p>
 
     <mat-form-field>
+      <mat-label>Data de Validade</mat-label>
       <input
-        placeholder="Data de Validade"
+        placeholder="Data de Validade do Produto"
         matInput
         formControlName="produto_data_validade"
         name="produto_data_validade"
+        [matDatepicker]="pickerValidade"
       />
+      <mat-hint>DD/MM/AAAA</mat-hint>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="pickerValidade"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #pickerValidade></mat-datepicker>
     </mat-form-field>
     <p>
       <span
@@ -259,12 +254,11 @@
     </p>
 
     <mat-form-field>
-      <input
-        placeholder="Estado do Produto"
-        matInput
-        formControlName="produto_estado"
-        name="produto_estado"
-      />
+      <mat-label>Estado do Produto</mat-label>
+      <mat-select formControlName="produto_estado" name="produto_estado">
+        <mat-option value="true">Ativo</mat-option>
+        <mat-option value="false">Inativo</mat-option>
+      </mat-select>
     </mat-form-field>
     <p>
       <span

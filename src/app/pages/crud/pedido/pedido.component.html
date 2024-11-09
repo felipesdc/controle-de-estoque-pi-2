@@ -15,7 +15,7 @@
 
     <ng-container matColumnDef="pedido_data">
       <th mat-header-cell *matHeaderCellDef>Data</th>
-      <td mat-cell *matCellDef="let pedido">{{ pedido.pedido_data }}</td>
+      <td mat-cell *matCellDef="let pedido">{{ pedido.pedido_data | date }}</td>
     </ng-container>
 
     <ng-container matColumnDef="pedido_usuario">

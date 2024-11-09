@@ -5,7 +5,13 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { EstadoPedido } from 'src/app/shared/models/estado-pedido.model';
+import { Fornecedor } from 'src/app/shared/models/fornecedor.model';
+import { Usuario } from 'src/app/shared/models/usuario.model';
+import { EstadoPedidoService } from 'src/app/shared/services/estado-pedido.service';
+import { FornecedorService } from 'src/app/shared/services/fornecedor.service';
 import { PedidoService } from 'src/app/shared/services/pedido.service';
+import { UsuarioService } from 'src/app/shared/services/usuario.service';
 
 @Component({
   selector: 'app-pedido-update',
@@ -17,12 +23,19 @@ export class PedidoUpdateComponent implements OnInit {
 
   pedidoForm: UntypedFormGroup;
 
+  fornecedores!: Fornecedor[];
+  usuarios!: Usuario[];
+  estadosPedido!: EstadoPedido[];
+
   get pedidoFormControl() {
     return this.pedidoForm.controls;
   }
 
   constructor(
     private pedidoService: PedidoService,
+    private fornecedorService: FornecedorService,
+    private usuarioService: UsuarioService,
+    private estadoPedidoService: EstadoPedidoService,
     private fb: UntypedFormBuilder,
     private router: Router,
     private route: ActivatedRoute
@@ -44,25 +57,53 @@ export class PedidoUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.pedido_id = this.route.snapshot.paramMap.get('pedido_id');
     this.pedidoForm.controls['pedido_id'].setValue(this.pedido_id);
+    this.fornecedorService.getFornecedores().subscribe({
+      next: (fornecedores) => (this.fornecedores = fornecedores),
+      complete: () => {
+        this.estadoPedidoService.getEstadosPedido().subscribe({
+          next: (estadosPedido) => (this.estadosPedido = estadosPedido),
+          complete: () => {
+            this.usuarioService.getUsuarios().subscribe({
+              next: (usuarios) => (this.usuarios = usuarios),
+              complete: () => {
+                this.carregaPedido();
+              },
+            });
+          },
+        });
+      },
+    });
+  }
+
+  carregaPedido(): void {
     this.pedidoService.getPedido(this.pedido_id).subscribe((pedido) => {
-      console.log(pedido);
       this.pedidoForm.controls['pedido_fornecedor_id'].setValue(
         pedido.pedido_fornecedor_id
       );
       this.pedidoForm.controls['pedido_fornecedor'].setValue(
-        pedido.pedido_fornecedor
+        this.fornecedores.find(
+          (fornecedor) =>
+            fornecedor.fornecedor_id === pedido.pedido_fornecedor_id
+        ).fornecedor_nome
       );
       this.pedidoForm.controls['pedido_data'].setValue(pedido.pedido_data);
       this.pedidoForm.controls['pedido_usuario_id'].setValue(
         pedido.pedido_usuario_id
       );
       this.pedidoForm.controls['pedido_usuario'].setValue(
-        pedido.pedido_usuario
+        this.usuarios.find(
+          (usuario) => usuario.usuario_id === pedido.pedido_usuario_id
+        ).usuario_nome
       );
       this.pedidoForm.controls['pedido_estado_id'].setValue(
         pedido.pedido_estado_id
       );
-      this.pedidoForm.controls['pedido_estado'].setValue(pedido.pedido_estado);
+      this.pedidoForm.controls['pedido_estado'].setValue(
+        this.estadosPedido.find(
+          (estadoPedido) =>
+            estadoPedido.estado_pedido_id === pedido.pedido_estado_id
+        ).estado_pedido_descricao
+      );
       this.pedidoForm.controls['pedido_observacao'].setValue(
         pedido.pedido_observacao
       );
@@ -78,11 +119,34 @@ export class PedidoUpdateComponent implements OnInit {
           'Pedido atualizado com sucesso!',
           'backsnack'
         );
-        this.router.navigate(['/crud']);
+        this.router.navigate(['/crud', 'pedido']);
       });
   }
 
   cancel(): void {
-    this.router.navigate(['/crud']);
+    this.router.navigate(['/crud', 'pedido']);
+  }
+
+  alteraNomeDoFornecedor(fornecedor_id: number) {
+    this.pedidoForm.controls['pedido_fornecedor'].setValue(
+      this.fornecedores.find(
+        (fornecedor) => fornecedor.fornecedor_id === fornecedor_id
+      ).fornecedor_nome
+    );
+  }
+
+  alteraNomeDoUsuario(usuario_id: number) {
+    this.pedidoForm.controls['pedido_usuario'].setValue(
+      this.usuarios.find((usuario) => usuario.usuario_id === usuario_id)
+        .usuario_nome
+    );
+  }
+
+  alteraDescricaoDoEstadoPedido(estado_pedido_id: number) {
+    this.pedidoForm.controls['pedido_estado'].setValue(
+      this.estadosPedido.find(
+        (estadoPedido) => estadoPedido.estado_pedido_id === estado_pedido_id
+      ).estado_pedido_descricao
+    );
   }
 }

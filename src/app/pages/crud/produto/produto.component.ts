@@ -77,37 +77,32 @@ export class ProdutoComponent implements OnInit {
   }
 
   carregaProdutos(): void {
-    if (
-      this.fornecedores.length > 0 &&
-      this.precos.length > 0 &&
-      this.unidades.length > 0 &&
-      this.categorias.length > 0
-    ) {
-      this.produtoService.getProdutos().subscribe((produtos) => {
-        this.produtos = produtos.map((produto) => {
-          let produto_fornecedor = this.fornecedores.find(
-            (fornecedor) =>
-              fornecedor.fornecedor_id === produto.produto_fornecedor_id
-          ).fornecedor_nome;
-          let produto_preco = this.precos.find(
-            (preco) => (preco.preco_id = produto.produto_preco_id)
-          ).preco_compra;
-          let produto_unidade = this.unidades.find(
-            (unidade) => unidade.unidade_id === produto.produto_unidade_id
-          ).unidade_descricao;
-          let produto_categoria = this.categorias.find(
-            (categoria) =>
-              categoria.categoria_id === produto.produto_categoria_id
-          ).categoria_descricao;
-          return {
-            ...produto,
-            produto_fornecedor,
-            produto_preco,
-            produto_unidade,
-            produto_categoria,
-          };
-        });
+    this.produtoService.getProdutos().subscribe((produtos) => {
+      this.produtos = produtos.map((produto) => {
+        if (produto.produto_id === 2) {
+          console.log(produto);
+        }
+        let produto_fornecedor = this.fornecedores.find(
+          (fornecedor) =>
+            fornecedor.fornecedor_id === produto.produto_fornecedor_id
+        ).fornecedor_nome;
+        let produto_preco = this.precos.find(
+          (preco) => preco.preco_id === produto.produto_preco_id
+        ).preco_compra;
+        let produto_unidade = this.unidades.find(
+          (unidade) => unidade.unidade_id === produto.produto_unidade_id
+        ).unidade_descricao;
+        let produto_categoria = this.categorias.find(
+          (categoria) => categoria.categoria_id === produto.produto_categoria_id
+        ).categoria_descricao;
+        return {
+          ...produto,
+          produto_fornecedor,
+          produto_preco,
+          produto_unidade,
+          produto_categoria,
+        };
       });
-    }
+    });
   }
 }

@@ -2,13 +2,18 @@
   <mat-card-title> Cadastrar um novo pedido </mat-card-title>
   <form [formGroup]="pedidoForm">
     <mat-form-field>
-      <input
-        placeholder="ID do Fornecedor"
-        matInput
+      <mat-label>ID do Fornecedor do Pedido</mat-label>
+      <mat-select
         formControlName="pedido_fornecedor_id"
         name="pedido_fornecedor_id"
-        readonly=""
-      />
+        (selectionChange)="alteraNomeDoFornecedor($event.value)"
+      >
+        @for (fornecedor of fornecedores; track fornecedor) {
+        <mat-option [value]="fornecedor.fornecedor_id">{{
+          fornecedor.fornecedor_id + " - " + fornecedor.fornecedor_nome
+        }}</mat-option>
+        }
+      </mat-select>
     </mat-form-field>
     <p>
       <span
@@ -28,27 +33,25 @@
         matInput
         formControlName="pedido_fornecedor"
         name="pedido_fornecedor"
+        readonly=""
       />
     </mat-form-field>
-    <p>
-      <span
-        *ngIf="
-          pedidoFormControl.pedido_fornecedor.touched &&
-          pedidoFormControl.pedido_fornecedor.errors?.required
-        "
-        class="text-danger"
-      >
-        Nome do Fornecedor Obrigatório
-      </span>
-    </p>
 
     <mat-form-field>
+      <mat-label>Data do Pedido</mat-label>
       <input
-        placeholder="Data"
+        placeholder="Data do Pedido"
         matInput
         formControlName="pedido_data"
         name="pedido_data"
+        [matDatepicker]="pickerDataPedido"
       />
+      <mat-hint>DD/MM/AAAA</mat-hint>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="pickerDataPedido"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #pickerDataPedido></mat-datepicker>
     </mat-form-field>
     <p>
       <span
@@ -63,12 +66,18 @@
     </p>
 
     <mat-form-field>
-      <input
-        placeholder="ID do Usuário"
-        matInput
+      <mat-label>ID do Usuário do Pedido</mat-label>
+      <mat-select
         formControlName="pedido_usuario_id"
         name="pedido_usuario_id"
-      />
+        (selectionChange)="alteraNomeDoUsuario($event.value)"
+      >
+        @for (usuario of usuarios; track usuario) {
+        <mat-option [value]="usuario.usuario_id">{{
+          usuario.usuario_id + " - " + usuario.usuario_nome
+        }}</mat-option>
+        }
+      </mat-select>
     </mat-form-field>
     <p>
       <span
@@ -88,27 +97,25 @@
         matInput
         formControlName="pedido_usuario"
         name="pedido_usuario"
+        readonly=""
       />
     </mat-form-field>
-    <p>
-      <span
-        *ngIf="
-          pedidoFormControl.pedido_usuario.touched &&
-          pedidoFormControl.pedido_usuario.errors?.required
-        "
-        class="text-danger"
-      >
-        Nome do Usuário Obrigatório
-      </span>
-    </p>
 
     <mat-form-field>
-      <input
-        placeholder="ID do Estado do Pedido"
-        matInput
+      <mat-label>ID do Estado do Pedido</mat-label>
+      <mat-select
         formControlName="pedido_estado_id"
         name="pedido_estado_id"
-      />
+        (selectionChange)="alteraDescricaoDoEstadoPedido($event.value)"
+      >
+        @for (estadoPedido of estadosPedido; track estadoPedido) {
+        <mat-option [value]="estadoPedido.estado_pedido_id">{{
+          estadoPedido.estado_pedido_id +
+            " - " +
+            estadoPedido.estado_pedido_descricao
+        }}</mat-option>
+        }
+      </mat-select>
     </mat-form-field>
     <p>
       <span
@@ -128,19 +135,9 @@
         matInput
         formControlName="pedido_estado"
         name="pedido_estado"
+        readonly=""
       />
     </mat-form-field>
-    <p>
-      <span
-        *ngIf="
-          pedidoFormControl.pedido_estado.touched &&
-          pedidoFormControl.pedido_estado.errors?.required
-        "
-        class="text-danger"
-      >
-        Estado do Pedido Obrigatório
-      </span>
-    </p>
 
     <mat-form-field>
       <input
@@ -163,6 +160,7 @@
     </p>
 
     <mat-form-field>
+      <mat-label>Total do Pedido (R$)</mat-label>
       <input
         currencyMask
         placeholder="Total do Pedido (R$)"

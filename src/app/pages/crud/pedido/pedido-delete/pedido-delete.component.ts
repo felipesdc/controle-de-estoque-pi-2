@@ -5,7 +5,13 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { EstadoPedido } from 'src/app/shared/models/estado-pedido.model';
+import { Fornecedor } from 'src/app/shared/models/fornecedor.model';
+import { Usuario } from 'src/app/shared/models/usuario.model';
+import { EstadoPedidoService } from 'src/app/shared/services/estado-pedido.service';
+import { FornecedorService } from 'src/app/shared/services/fornecedor.service';
 import { PedidoService } from 'src/app/shared/services/pedido.service';
+import { UsuarioService } from 'src/app/shared/services/usuario.service';
 
 @Component({
   selector: 'app-pedido-delete',
@@ -17,12 +23,19 @@ export class PedidoDeleteComponent implements OnInit {
 
   pedidoForm: UntypedFormGroup;
 
+  fornecedores!: Fornecedor[];
+  usuarios!: Usuario[];
+  estadosPedido!: EstadoPedido[];
+
   get pedidoFormControl() {
     return this.pedidoForm.controls;
   }
 
   constructor(
     private pedidoService: PedidoService,
+    private fornecedorService: FornecedorService,
+    private usuarioService: UsuarioService,
+    private estadoPedidoService: EstadoPedidoService,
     private router: Router,
     private route: ActivatedRoute,
     private fb: UntypedFormBuilder
@@ -44,6 +57,25 @@ export class PedidoDeleteComponent implements OnInit {
   ngOnInit(): void {
     this.pedido_id = this.route.snapshot.paramMap.get('pedido_id');
     this.pedidoForm.controls['pedido_id'].setValue(this.pedido_id);
+    this.fornecedorService.getFornecedores().subscribe({
+      next: (fornecedores) => (this.fornecedores = fornecedores),
+      complete: () => {
+        this.estadoPedidoService.getEstadosPedido().subscribe({
+          next: (estadosPedido) => (this.estadosPedido = estadosPedido),
+          complete: () => {
+            this.usuarioService.getUsuarios().subscribe({
+              next: (usuarios) => (this.usuarios = usuarios),
+              complete: () => {
+                this.carregaPedido();
+              },
+            });
+          },
+        });
+      },
+    });
+  }
+
+  carregaPedido(): void {
     this.pedidoService.getPedido(this.pedido_id).subscribe((pedido) => {
       console.log(pedido);
       this.pedidoForm.controls['pedido_fornecedor_id'].setValue(

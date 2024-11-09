@@ -71,7 +71,9 @@ export class ProdutoUpdateComponent implements OnInit {
               complete: () => {
                 this.categoriaService.getCategorias().subscribe({
                   next: (categorias) => (this.categorias = categorias),
-                  complete: () => {},
+                  complete: () => {
+                    this.carregaProduto();
+                  },
                 });
               },
             });
@@ -84,6 +86,9 @@ export class ProdutoUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.produto_id = this.route.snapshot.paramMap.get('produto_id');
     this.produtoForm.controls['produto_id'].setValue(this.produto_id);
+  }
+
+  carregaProduto(): void {
     this.produtoService.getProduto(this.produto_id).subscribe((produto) => {
       this.produtoForm.controls['produto_descricao'].setValue(
         produto.produto_descricao

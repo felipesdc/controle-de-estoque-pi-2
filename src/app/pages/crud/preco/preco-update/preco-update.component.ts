@@ -58,11 +58,16 @@ export class PrecoUpdateComponent implements OnInit {
     let preco_data_inicial = extractDate(
       precoSemTratamento.preco_data_inicial.toString()
     );
-    let preco_data_final = extractDate(
-      precoSemTratamento.preco_data_final.toString()
-    );
-    if (preco_data_final === '') {
+    let preco_data_final: string;
+    if (
+      precoSemTratamento.preco_data_final === '' ||
+      precoSemTratamento.preco_data_final === null
+    ) {
       preco_data_final = null;
+    } else {
+      preco_data_final = extractDate(
+        precoSemTratamento.preco_data_final.toString()
+      );
     }
     const preco = {
       ...precoSemTratamento,

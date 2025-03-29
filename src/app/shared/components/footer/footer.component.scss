@@ -1,12 +1,15 @@
 mat-toolbar {
   display: flex;
+  flex-direction: row;
   position: fixed;
   bottom: 0;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: space-between;
   font-size: 0.8rem;
   font-weight: 300;
 }
 
-strong {
-  font-weight: 400;
+.footer-disciplinas {
+  display: flex;
+  flex-direction: column;
 }

@@ -4,6 +4,7 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
+import { forkJoin } from 'rxjs';
 import { Categoria } from 'src/app/shared/models/categoria.model';
 import { Fornecedor } from 'src/app/shared/models/fornecedor.model';
 import { Preco } from 'src/app/shared/models/preco.model';
@@ -53,26 +54,20 @@ export class ProdutoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.fornecedorService.getFornecedores().subscribe({
-      next: (fornecedores) => (this.fornecedores = fornecedores),
-      complete: () => {
-        this.precoService.getPrecos().subscribe({
-          next: (precos) => (this.precos = precos),
-          complete: () => {
-            this.unidadeService.getUnidades().subscribe({
-              next: (unidades) => (this.unidades = unidades),
-              complete: () => {
-                this.categoriaService.getCategorias().subscribe({
-                  next: (categorias) => (this.categorias = categorias),
-                  complete: () => {
-                    this.carregaProdutos();
-                  },
-                });
-              },
-            });
-          },
-        });
+    forkJoin({
+      fornecedores: this.fornecedorService.getFornecedores(),
+      precos: this.precoService.getPrecos(),
+      unidades: this.unidadeService.getUnidades(),
+      categorias: this.categoriaService.getCategorias(),
+    }).subscribe({
+      next: ({ fornecedores, precos, unidades, categorias }) => {
+        this.fornecedores = fornecedores;
+        this.precos = precos;
+        this.unidades = unidades;
+        this.categorias = categorias;
+        this.carregaProdutos();
       },
+      error: (err) => console.error('Erro ao carregar dados:', err),
     });
   }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { forkJoin } from 'rxjs';
 import { EstadoPedido } from 'src/app/shared/models/estado-pedido.model';
 import { Fornecedor } from 'src/app/shared/models/fornecedor.model';
 import { Pedido } from 'src/app/shared/models/pedido.model';
@@ -39,21 +40,18 @@ export class PedidoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.fornecedorService.getFornecedores().subscribe({
-      next: (fornecedores) => (this.fornecedores = fornecedores),
-      complete: () => {
-        this.estadoPedidoService.getEstadosPedido().subscribe({
-          next: (estadosPedido) => (this.estadosPedido = estadosPedido),
-          complete: () => {
-            this.usuarioService.getUsuarios().subscribe({
-              next: (usuarios) => (this.usuarios = usuarios),
-              complete: () => {
-                this.carregaPedidos();
-              },
-            });
-          },
-        });
+    forkJoin({
+      fornecedores: this.fornecedorService.getFornecedores(),
+      estadosPedido: this.estadoPedidoService.getEstadosPedido(),
+      usuarios: this.usuarioService.getUsuarios(),
+    }).subscribe({
+      next: ({ fornecedores, estadosPedido, usuarios }) => {
+        this.fornecedores = fornecedores;
+        this.estadosPedido = estadosPedido;
+        this.usuarios = usuarios;
+        this.carregaPedidos();
       },
+      error: (err) => console.error('Erro ao carregar dados:', err),
     });
   }
 

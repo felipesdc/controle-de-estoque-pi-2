@@ -95,6 +95,10 @@ import { HistoricoEstadoPedidoComponent } from './pages/crud/historico-estado-pe
 import { HistoricoEstadoPedidoDeleteComponent } from './pages/crud/historico-estado-pedido/historico-estado-pedido-delete/historico-estado-pedido-delete.component';
 import { HistoricoEstadoPedidoService } from './shared/services/historico-estado-pedido.service';
 
+import { AuthService } from './shared/services/auth.service';
+import { AuthGuard } from './shared/guards/auth.guard';
+import { LoginModule } from './pages/login/login.module';
+
 registerLocaleData(localePt);
 
 @NgModule({
@@ -166,6 +170,7 @@ registerLocaleData(localePt);
     ReactiveFormsModule,
     MaterialModule,
     CurrencyMaskModule,
+    LoginModule,
   ],
   providers: [
     CategoriaService,
@@ -180,6 +185,8 @@ registerLocaleData(localePt);
     ProdutoService,
     UnidadeService,
     UsuarioService,
+    AuthService,
+    AuthGuard,
     provideNativeDateAdapter(),
     {
       provide: LOCALE_ID,

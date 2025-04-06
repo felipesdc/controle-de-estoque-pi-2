@@ -98,6 +98,7 @@ import { HistoricoEstadoPedidoService } from './shared/services/historico-estado
 import { AuthService } from './shared/services/auth.service';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { LoginModule } from './pages/login/login.module';
+import { SidenavService } from './shared/services/sidenav.service';
 
 registerLocaleData(localePt);
 
@@ -187,6 +188,7 @@ registerLocaleData(localePt);
     UsuarioService,
     AuthService,
     AuthGuard,
+    SidenavService,
     provideNativeDateAdapter(),
     {
       provide: LOCALE_ID,

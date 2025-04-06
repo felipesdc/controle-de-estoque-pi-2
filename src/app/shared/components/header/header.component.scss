@@ -1,8 +1,30 @@
-mat-toolbar {
-  justify-content: center;
-}
+.app-header-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 64px;
 
-span {
-  font-size: 2rem;
-  font-weight: 400;
+  .app-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-left: 8px;
+  }
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+  .menu-button {
+    display: none; // só ativar se quiser menu responsivo
+  }
+
+  @media (max-width: 768px) {
+    .menu-button {
+      display: inline-flex;
+    }
+
+    .app-title {
+      font-size: 1rem;
+    }
+  }
 }

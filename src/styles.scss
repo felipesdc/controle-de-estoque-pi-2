@@ -3,8 +3,9 @@
 html,
 body {
   height: 100%;
+  margin: 0;
+  overflow: hidden; // evita scroll extra, se o conteúdo for controlado
 }
 body {
-  margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-sidenav',
@@ -6,7 +6,6 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./sidenav.component.scss'],
 })
 export class SidenavComponent implements OnInit {
-  @Input() opened = true;
   constructor() {}
 
   ngOnInit(): void {}

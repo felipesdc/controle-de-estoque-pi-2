@@ -1,15 +1,22 @@
-mat-toolbar {
-  display: flex;
-  flex-direction: row;
-  position: fixed;
-  bottom: 0;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 0.8rem;
-  font-weight: 300;
-}
+.app-footer {
+  background-color: #f1f1f1;
+  padding: 12px 24px;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #555;
+  border-top: 1px solid #ccc;
 
-.footer-disciplinas {
-  display: flex;
-  flex-direction: column;
+  .footer-content {
+    max-width: 1000px;
+    margin: 0 auto;
+
+    p {
+      margin: 4px 0;
+      line-height: 1.4;
+    }
+
+    strong {
+      color: #333;
+    }
+  }
 }

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
+import { SidenavService } from '../../services/sidenav.service';
 
 @Component({
   selector: 'app-home-layout',
@@ -6,16 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-layout.component.scss'],
 })
 export class HomeLayoutComponent implements OnInit {
-  public opened = true;
-  constructor() {}
+  @ViewChild(MatSidenav) sidenav!: MatSidenav;
+
+  constructor(private sidenavService: SidenavService) {}
 
   ngOnInit(): void {}
 
-  public onOpen($event: boolean): void {
-    this.opened = $event;
-  }
-
-  public onClose($event: any): void {
-    this.opened = $event;
+  ngAfterViewInit(): void {
+    this.sidenavService.setSidenav(this.sidenav);
   }
 }

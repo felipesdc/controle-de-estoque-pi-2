@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { SidenavService } from '../../services/sidenav.service';
 
 @Component({
   selector: 'app-header',
@@ -6,20 +7,11 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  visible: boolean = true;
-  @Output() open: EventEmitter<boolean> = new EventEmitter();
-  @Output() close: EventEmitter<boolean> = new EventEmitter();
+  constructor(private sidenavService: SidenavService) {}
 
-  constructor() {}
+  toggleSidenav(): void {
+    this.sidenavService.toggle();
+  }
 
   ngOnInit(): void {}
-
-  toggle() {
-    this.visible = !this.visible;
-    if (this.visible) {
-      this.open.emit(true);
-    } else {
-      this.close.emit(false);
-    }
-  }
 }

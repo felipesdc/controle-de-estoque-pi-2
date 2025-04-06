@@ -1,3 +1,25 @@
-<app-header (open)="onOpen($event)" (close)="onClose($event)"></app-header>
-<app-sidenav [opened]="opened"></app-sidenav>
-<app-footer></app-footer>
+<mat-sidenav-container class="app-container">
+  <mat-sidenav mode="side" opened>
+    <app-sidenav></app-sidenav>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <app-header></app-header>
+
+    <div class="app-main-content">
+      <!-- Conteúdo da tela -->
+      <section class="welcome-section">
+        <h1>Bem-vindo ao Sistema de Controle de Estoques</h1>
+        <p>Use o menu lateral para navegar entre as funcionalidades.</p>
+
+        <div class="quick-actions">
+          <button mat-raised-button color="primary">Novo Produto</button>
+          <button mat-raised-button color="accent">Nova Movimentação</button>
+          <button mat-raised-button color="warn">Relatórios</button>
+        </div>
+      </section>
+    </div>
+
+    <app-footer></app-footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,6 +1,20 @@
-<p>
-  <mat-toolbar class="mat-elevation-z4">
-    <mat-icon (click)="toggle()">menu</mat-icon>
-    <span>Mr. Mordis - Controle de Estoque</span>
-  </mat-toolbar>
-</p>
+<mat-toolbar color="primary" class="app-header-toolbar">
+  <!-- Ícone de menu, caso queira usar com sidenav mode="over" futuramente -->
+  <button mat-icon-button (click)="toggleSidenav()" class="menu-button">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <!-- Título do sistema -->
+  <span class="app-title">Mr. Mordis - Controle de Estoque</span>
+
+  <span class="spacer"></span>
+
+  <!-- Ações do usuário -->
+  <button mat-icon-button aria-label="Notificações">
+    <mat-icon>notifications</mat-icon>
+  </button>
+
+  <button mat-icon-button aria-label="Perfil">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+</mat-toolbar>

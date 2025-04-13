@@ -1,7 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, of } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +11,11 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 export class AuthService {
   private isAuthenticated = new BehaviorSubject<boolean>(this.hasToken());
 
-  constructor(private snack: MatSnackBar, private router: Router) {}
+  constructor(
+    private snack: MatSnackBar,
+    private router: Router,
+    private http: HttpClient
+  ) {}
 
   showMessage(msg: string, css: string): void {
     this.snack.open(msg, 'X', {
@@ -21,19 +27,37 @@ export class AuthService {
   }
 
   login(username: string, password: string): Observable<boolean> {
-    // Simulando uma API de autenticação
-    if (username === 'admin' && password === '1234') {
-      localStorage.setItem('token', 'meu-token-seguro');
-      this.isAuthenticated.next(true);
-      return of(true);
-    }
-    return of(false);
+    return new Observable<boolean>((observer) => {
+      this.http
+        .post<{ token: string }>(`${environment.apiurl}/usuario/login`, {
+          usuario_nome: username,
+          usuario_password: password,
+        })
+        .subscribe({
+          next: (response) => {
+            localStorage.setItem('token', response.token);
+            this.isAuthenticated.next(true);
+            observer.next(true);
+            observer.complete();
+          },
+          error: (error) => {
+            this.showMessage('Usuário ou senha inválidos', 'msg-error');
+            this.isAuthenticated.next(false);
+            observer.next(false);
+            observer.complete();
+          },
+        });
+    });
   }
 
   logout(): void {
     localStorage.removeItem('token');
     this.isAuthenticated.next(false);
     this.router.navigate(['/login']);
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem('token');
   }
 
   isLoggedIn(): Observable<boolean> {

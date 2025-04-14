@@ -8,15 +8,15 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  username: string = '';
-  password: string = '';
+  usuario_login: string = '';
+  usuario_password: string = '';
   errorMessage: string = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 
   login(): void {
     this.authService
-      .login(this.username, this.password)
+      .login(this.usuario_login, this.usuario_password)
       .subscribe((success) => {
         if (success) {
           this.authService.showMessage('Autenticado com sucesso!', 'backsnack');

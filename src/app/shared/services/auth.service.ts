@@ -26,12 +26,12 @@ export class AuthService {
     });
   }
 
-  login(username: string, password: string): Observable<boolean> {
+  login(usuario_login: string, usuario_password: string): Observable<boolean> {
     return new Observable<boolean>((observer) => {
       this.http
         .post<{ token: string }>(`${environment.apiurl}/usuario/login`, {
-          usuario_nome: username,
-          usuario_password: password,
+          usuario_login: usuario_login,
+          usuario_password: usuario_password,
         })
         .subscribe({
           next: (response) => {

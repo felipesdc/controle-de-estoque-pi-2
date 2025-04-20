@@ -64,12 +64,12 @@ export class UsuarioCreateComponent implements OnInit {
         'Usuário criado com sucesso!',
         'backsnack'
       );
-      this.router.navigate(['/crud', 'usuario']);
+      this.router.navigate(['admin', 'usuario']);
     });
   }
 
   cancel(): void {
-    this.router.navigate(['/crud', 'usuario']);
+    this.router.navigate(['admin', 'usuario']);
   }
 
   alteraNomeDoPerfil(perfil_id: number) {

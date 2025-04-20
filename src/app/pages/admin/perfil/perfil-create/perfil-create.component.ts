@@ -40,11 +40,11 @@ export class PerfilCreateComponent implements OnInit {
   createPerfil(): void {
     this.perfilService.createNewPerfil(this.perfil).subscribe(() => {
       this.perfilService.showMessage('Perfil criado com sucesso!', 'backsnack');
-      this.router.navigate(['/crud', 'perfil']);
+      this.router.navigate(['admin', 'perfil']);
     });
   }
 
   cancel(): void {
-    this.router.navigate(['/crud', 'perfil']);
+    this.router.navigate(['admin', 'perfil']);
   }
 }

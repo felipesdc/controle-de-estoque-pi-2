@@ -49,11 +49,11 @@ export class PerfilDeleteComponent implements OnInit {
           'Perfil excluído com sucesso!',
           'backsnack'
         );
-        this.router.navigate(['/crud', 'perfil']);
+        this.router.navigate(['admin', 'perfil']);
       });
   }
 
   cancel(): void {
-    this.router.navigate(['/crud', 'perfil']);
+    this.router.navigate(['admin', 'perfil']);
   }
 }

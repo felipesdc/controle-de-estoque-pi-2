@@ -43,11 +43,11 @@ export class UnidadeCreateComponent implements OnInit {
         'Unidade criada com sucesso!',
         'backsnack'
       );
-      this.router.navigate(['/crud', 'unidade']);
+      this.router.navigate(['admin', 'unidade']);
     });
   }
 
   cancel(): void {
-    this.router.navigate(['/crud', 'unidade']);
+    this.router.navigate(['admin', 'unidade']);
   }
 }

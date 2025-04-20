@@ -53,11 +53,11 @@ export class CategoriaUpdateComponent implements OnInit {
           'Categoria atualizada com sucesso!',
           'backsnack'
         );
-        this.router.navigate(['/crud', 'categoria']);
+        this.router.navigate(['admin', 'categoria']);
       });
   }
 
   cancel(): void {
-    this.router.navigate(['/crud', 'categoria']);
+    this.router.navigate(['admin', 'categoria']);
   }
 }

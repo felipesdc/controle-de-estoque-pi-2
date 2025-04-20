@@ -5,6 +5,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { forkJoin } from 'rxjs';
 import { Categoria } from 'src/app/shared/models/categoria.model';
 import { Fornecedor } from 'src/app/shared/models/fornecedor.model';
 import { Preco } from 'src/app/shared/models/preco.model';
@@ -65,16 +66,22 @@ export class ProdutoCreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fornecedorService
-      .getFornecedores()
-      .subscribe((fornecedores) => (this.fornecedores = fornecedores));
-    this.precoService.getPrecos().subscribe((precos) => (this.precos = precos));
-    this.unidadeService
-      .getUnidades()
-      .subscribe((unidades) => (this.unidades = unidades));
-    this.categoriaService
-      .getCategorias()
-      .subscribe((categorias) => (this.categorias = categorias));
+    forkJoin({
+      fornecedores: this.fornecedorService.getFornecedores(),
+      precos: this.precoService.getPrecos(),
+      unidades: this.unidadeService.getUnidades(),
+      categorias: this.categoriaService.getCategorias(),
+    }).subscribe({
+      next: ({ fornecedores, precos, unidades, categorias }) => {
+        this.fornecedores = fornecedores;
+        this.precos = precos;
+        this.unidades = unidades;
+        this.categorias = categorias;
+      },
+      error: (error) => {
+        console.error('Erro ao carregar dados iniciais:', error);
+      },
+    });
   }
 
   createProduto(): void {
@@ -83,12 +90,12 @@ export class ProdutoCreateComponent implements OnInit {
         'Produto criado com sucesso!',
         'backsnack'
       );
-      this.router.navigate(['/crud', 'produto']);
+      this.router.navigate(['admin', 'produto']);
     });
   }
 
   cancel(): void {
-    this.router.navigate(['/crud', 'produto']);
+    this.router.navigate(['admin', 'produto']);
   }
 
   alteraNomeDoFornecedor(fornecedor_id: number) {

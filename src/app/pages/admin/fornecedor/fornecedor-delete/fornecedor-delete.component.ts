@@ -61,11 +61,11 @@ export class FornecedorDeleteComponent implements OnInit {
           'Fornecedor excluído com sucesso!',
           'backsnack'
         );
-        this.router.navigate(['/crud', 'fornecedor']);
+        this.router.navigate(['admin', 'fornecedor']);
       });
   }
 
   cancel(): void {
-    this.router.navigate(['/crud', 'fornecedor']);
+    this.router.navigate(['admin', 'fornecedor']);
   }
 }

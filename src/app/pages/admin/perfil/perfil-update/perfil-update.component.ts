@@ -49,11 +49,11 @@ export class PerfilUpdateComponent implements OnInit {
           'Perfil atualizado com sucesso!',
           'backsnack'
         );
-        this.router.navigate(['/crud', 'perfil']);
+        this.router.navigate(['admin', 'perfil']);
       });
   }
 
   cancel(): void {
-    this.router.navigate(['/crud', 'perfil']);
+    this.router.navigate(['admin', 'perfil']);
   }
 }

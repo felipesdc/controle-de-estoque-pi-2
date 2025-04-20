@@ -58,11 +58,11 @@ export class PrecoCreateComponent implements OnInit {
   createPreco(): void {
     this.precoService.createNewPreco(this.preco).subscribe(() => {
       this.precoService.showMessage('Preço criado com sucesso!', 'backsnack');
-      this.router.navigate(['/crud', 'preco']);
+      this.router.navigate(['admin', 'preco']);
     });
   }
 
   cancel(): void {
-    this.router.navigate(['/crud', 'preco']);
+    this.router.navigate(['admin', 'preco']);
   }
 }

@@ -75,12 +75,12 @@ export class PedidoCreateComponent implements OnInit {
   createPedido(): void {
     this.pedidoService.createNewPedido(this.pedido).subscribe(() => {
       this.pedidoService.showMessage('Pedido criado com sucesso!', 'backsnack');
-      this.router.navigate(['/crud', 'pedido']);
+      this.router.navigate(['admin', 'pedido']);
     });
   }
 
   cancel(): void {
-    this.router.navigate(['/crud', 'pedido']);
+    this.router.navigate(['admin', 'pedido']);
   }
 
   alteraNomeDoFornecedor(fornecedor_id: number) {

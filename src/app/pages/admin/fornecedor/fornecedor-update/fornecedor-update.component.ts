@@ -61,11 +61,11 @@ export class FornecedorUpdateComponent implements OnInit {
           'Fornecedor atualizado com sucesso!',
           'backsnack'
         );
-        this.router.navigate(['/crud', 'fornecedor']);
+        this.router.navigate(['admin', 'fornecedor']);
       });
   }
 
   cancel(): void {
-    this.router.navigate(['/crud', 'fornecedor']);
+    this.router.navigate(['admin', 'fornecedor']);
   }
 }

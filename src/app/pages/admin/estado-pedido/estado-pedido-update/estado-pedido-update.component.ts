@@ -59,11 +59,11 @@ export class EstadoPedidoUpdateComponent implements OnInit {
           'Estado de Pedido atualizado com sucesso!',
           'backsnack'
         );
-        this.router.navigate(['/crud', 'estado-pedido']);
+        this.router.navigate(['admin', 'estado-pedido']);
       });
   }
 
   cancel(): void {
-    this.router.navigate(['/crud', 'estado-pedido']);
+    this.router.navigate(['admin', 'estado-pedido']);
   }
 }

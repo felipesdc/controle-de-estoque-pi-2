@@ -45,11 +45,11 @@ export class EstadoPedidoCreateComponent implements OnInit {
           'Estado de Pedido criado com sucesso!',
           'backsnack'
         );
-        this.router.navigate(['/crud', 'estado-pedido']);
+        this.router.navigate(['admin', 'estado-pedido']);
       });
   }
 
   cancel(): void {
-    this.router.navigate(['/crud', 'estado-pedido']);
+    this.router.navigate(['admin', 'estado-pedido']);
   }
 }

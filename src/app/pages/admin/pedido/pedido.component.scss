@@ -10,3 +10,10 @@ table {
 .delete {
   color: #ed5519;
 }
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}

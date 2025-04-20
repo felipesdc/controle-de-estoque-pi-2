@@ -110,11 +110,11 @@ export class PedidoDeleteComponent implements OnInit {
           'Pedido excluído com sucesso!',
           'backsnack'
         );
-        this.router.navigate(['/crud', 'pedido']);
+        this.router.navigate(['admin', 'pedido']);
       });
   }
 
   cancel(): void {
-    this.router.navigate(['/crud', 'pedido']);
+    this.router.navigate(['admin', 'pedido']);
   }
 }

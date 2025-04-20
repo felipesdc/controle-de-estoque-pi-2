@@ -1,7 +1,17 @@
 <div>
-  <span>
+  <div class="header">
     <h1>Categorias cadastradas</h1>
-  </span>
+    <button
+      mat-raised-button
+      color="primary"
+      routerLink="create"
+      style="margin-left: auto"
+    >
+      <mat-icon>add</mat-icon>
+      Nova Categoria
+    </button>
+  </div>
+
   <table mat-table [dataSource]="categorias" class="mat-elevation-z4">
     <ng-container matColumnDef="categoria_id">
       <th mat-header-cell *matHeaderCellDef>ID da Categoria</th>
@@ -21,14 +31,14 @@
         <a
           mat-icon-button
           class="edit"
-          routerLink="/categoria/update/{{ categoria.categoria_id }}"
+          routerLink="update/{{ categoria.categoria_id }}"
         >
           <mat-icon> edit </mat-icon>
         </a>
         <a
           mat-icon-button
           class="delete"
-          routerLink="/categoria/delete/{{ categoria.categoria_id }}"
+          routerLink="delete/{{ categoria.categoria_id }}"
         >
           <mat-icon> delete </mat-icon>
         </a>

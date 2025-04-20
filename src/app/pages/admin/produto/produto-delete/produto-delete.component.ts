@@ -5,6 +5,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { forkJoin } from 'rxjs';
 import { Categoria } from 'src/app/shared/models/categoria.model';
 import { Fornecedor } from 'src/app/shared/models/fornecedor.model';
 import { Preco } from 'src/app/shared/models/preco.model';
@@ -65,25 +66,21 @@ export class ProdutoDeleteComponent implements OnInit {
   ngOnInit(): void {
     this.produto_id = this.route.snapshot.paramMap.get('produto_id');
     this.produtoForm.controls['produto_id'].setValue(this.produto_id);
-    this.fornecedorService.getFornecedores().subscribe({
-      next: (fornecedores) => (this.fornecedores = fornecedores),
-      complete: () => {
-        this.precoService.getPrecos().subscribe({
-          next: (precos) => (this.precos = precos),
-          complete: () => {
-            this.unidadeService.getUnidades().subscribe({
-              next: (unidades) => (this.unidades = unidades),
-              complete: () => {
-                this.categoriaService.getCategorias().subscribe({
-                  next: (categorias) => (this.categorias = categorias),
-                  complete: () => {
-                    this.carregaProduto();
-                  },
-                });
-              },
-            });
-          },
-        });
+    forkJoin({
+      fornecedores: this.fornecedorService.getFornecedores(),
+      precos: this.precoService.getPrecos(),
+      unidades: this.unidadeService.getUnidades(),
+      categorias: this.categoriaService.getCategorias(),
+    }).subscribe({
+      next: ({ fornecedores, precos, unidades, categorias }) => {
+        this.fornecedores = fornecedores;
+        this.precos = precos;
+        this.unidades = unidades;
+        this.categorias = categorias;
+        this.carregaProduto();
+      },
+      error: (error) => {
+        console.error('Erro ao carregar dados iniciais:', error);
       },
     });
   }
@@ -149,11 +146,11 @@ export class ProdutoDeleteComponent implements OnInit {
           'Produto excluído com sucesso!',
           'backsnack'
         );
-        this.router.navigate(['/crud', 'produto']);
+        this.router.navigate(['admin', 'produto']);
       });
   }
 
   cancel(): void {
-    this.router.navigate(['/crud', 'produto']);
+    this.router.navigate(['admin', 'produto']);
   }
 }

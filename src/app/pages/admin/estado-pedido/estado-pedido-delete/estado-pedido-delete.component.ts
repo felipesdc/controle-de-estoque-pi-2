@@ -56,11 +56,11 @@ export class EstadoPedidoDeleteComponent implements OnInit {
           'Estado de Pedido excluído com sucesso!',
           'backsnack'
         );
-        this.router.navigate(['/crud', 'estado-pedido']);
+        this.router.navigate(['admin', 'estado-pedido']);
       });
   }
 
   cancel(): void {
-    this.router.navigate(['/crud', 'estado-pedido']);
+    this.router.navigate(['admin', 'estado-pedido']);
   }
 }

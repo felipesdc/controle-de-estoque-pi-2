@@ -53,11 +53,11 @@ export class CategoriaDeleteComponent implements OnInit {
           'Categoria excluída com sucesso!',
           'backsnack'
         );
-        this.router.navigate(['/crud', 'categoria']);
+        this.router.navigate(['admin', 'categoria']);
       });
   }
 
   cancel(): void {
-    this.router.navigate(['/crud', 'categoria']);
+    this.router.navigate(['admin', 'categoria']);
   }
 }

@@ -50,11 +50,11 @@ export class ItemPedidoCreateComponent implements OnInit {
           'Item de Pedido criado com sucesso!',
           'backsnack'
         );
-        this.router.navigate(['/crud', 'item-pedido']);
+        this.router.navigate(['admin', 'item-pedido']);
       });
   }
 
   cancel(): void {
-    this.router.navigate(['/crud', 'item-pedido']);
+    this.router.navigate(['admin', 'item-pedido']);
   }
 }

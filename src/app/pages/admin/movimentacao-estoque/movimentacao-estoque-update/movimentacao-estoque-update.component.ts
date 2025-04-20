@@ -78,11 +78,11 @@ export class MovimentacaoEstoqueUpdateComponent implements OnInit {
           'Movimentação de Estoque atualizada com sucesso!',
           'backsnack'
         );
-        this.router.navigate(['/crud', 'movimentacao-estoque']);
+        this.router.navigate(['admin', 'movimentacao-estoque']);
       });
   }
 
   cancel(): void {
-    this.router.navigate(['/crud', 'movimentacao-estoque']);
+    this.router.navigate(['admin', 'movimentacao-estoque']);
   }
 }

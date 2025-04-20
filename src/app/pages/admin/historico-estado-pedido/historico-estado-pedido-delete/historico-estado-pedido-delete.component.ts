@@ -69,11 +69,11 @@ export class HistoricoEstadoPedidoDeleteComponent implements OnInit {
           'Histórico de Estado do Pedido excluído com sucesso!',
           'backsnack'
         );
-        this.router.navigate(['/crud', 'historico-estado-pedido']);
+        this.router.navigate(['admin', 'historico-estado-pedido']);
       });
   }
 
   cancel(): void {
-    this.router.navigate(['/crud', 'historico-estado-pedido']);
+    this.router.navigate(['admin', 'historico-estado-pedido']);
   }
 }

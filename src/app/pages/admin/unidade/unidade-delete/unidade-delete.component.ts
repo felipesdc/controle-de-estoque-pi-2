@@ -51,11 +51,11 @@ export class UnidadeDeleteComponent implements OnInit {
           'Unidade excluída com sucesso!',
           'backsnack'
         );
-        this.router.navigate(['/crud', 'unidade']);
+        this.router.navigate(['admin', 'unidade']);
       });
   }
 
   cancel(): void {
-    this.router.navigate(['/crud', 'unidade']);
+    this.router.navigate(['admin', 'unidade']);
   }
 }

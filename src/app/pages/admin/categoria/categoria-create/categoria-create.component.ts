@@ -43,11 +43,11 @@ export class CategoriaCreateComponent implements OnInit {
         'Categoria criada com sucesso!',
         'backsnack'
       );
-      this.router.navigate(['/crud', 'categoria']);
+      this.router.navigate(['admin', 'categoria']);
     });
   }
 
   cancel(): void {
-    this.router.navigate(['/crud', 'categoria']);
+    this.router.navigate(['admin', 'categoria']);
   }
 }

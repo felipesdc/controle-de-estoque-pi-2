@@ -51,11 +51,11 @@ export class UnidadeUpdateComponent implements OnInit {
           'Unidade atualizada com sucesso!',
           'backsnack'
         );
-        this.router.navigate(['/crud', 'unidade']);
+        this.router.navigate(['admin', 'unidade']);
       });
   }
 
   cancel(): void {
-    this.router.navigate(['/crud', 'unidade']);
+    this.router.navigate(['admin', 'unidade']);
   }
 }

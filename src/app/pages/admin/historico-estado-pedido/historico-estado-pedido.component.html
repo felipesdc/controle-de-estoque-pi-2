@@ -1,7 +1,16 @@
 <div>
-  <span>
+  <div class="header">
     <h1>Históricos de Estados de Pedido cadastrados</h1>
-  </span>
+    <button
+      mat-raised-button
+      color="primary"
+      routerLink="create"
+      style="margin-left: auto"
+    >
+      <mat-icon>add</mat-icon>
+      Novo Histórico de Estado de Pedido
+    </button>
+  </div>
   <table mat-table [dataSource]="historicos" class="mat-elevation-z4">
     <ng-container matColumnDef="historico_id">
       <th mat-header-cell *matHeaderCellDef>ID do Histórico</th>
@@ -51,14 +60,14 @@
         <a
           mat-icon-button
           class="edit"
-          routerLink="/historico/update/{{ historico.historico_id }}"
+          routerLink="update/{{ historico.historico_id }}"
         >
           <mat-icon> edit </mat-icon>
         </a>
         <a
           mat-icon-button
           class="delete"
-          routerLink="/historico/delete/{{ historico.historico_id }}"
+          routerLink="delete/{{ historico.historico_id }}"
         >
           <mat-icon> delete </mat-icon>
         </a>

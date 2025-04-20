@@ -81,11 +81,11 @@ export class PrecoUpdateComponent implements OnInit {
           'Preço atualizado com sucesso!',
           'backsnack'
         );
-        this.router.navigate(['/crud', 'preco']);
+        this.router.navigate(['admin', 'preco']);
       });
   }
 
   cancel(): void {
-    this.router.navigate(['/crud', 'preco']);
+    this.router.navigate(['admin', 'preco']);
   }
 }

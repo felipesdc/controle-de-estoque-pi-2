@@ -72,11 +72,11 @@ export class HistoricoEstadoPedidoUpdateComponent implements OnInit {
           'Histórico atualizado com sucesso!',
           'backsnack'
         );
-        this.router.navigate(['/crud', 'historico-estado-pedido']);
+        this.router.navigate(['admin', 'historico-estado-pedido']);
       });
   }
 
   cancel(): void {
-    this.router.navigate(['/crud', 'historico-estado-pedido']);
+    this.router.navigate(['admin', 'historico-estado-pedido']);
   }
 }

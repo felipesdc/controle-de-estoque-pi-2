@@ -119,12 +119,12 @@ export class PedidoUpdateComponent implements OnInit {
           'Pedido atualizado com sucesso!',
           'backsnack'
         );
-        this.router.navigate(['/crud', 'pedido']);
+        this.router.navigate(['admin', 'pedido']);
       });
   }
 
   cancel(): void {
-    this.router.navigate(['/crud', 'pedido']);
+    this.router.navigate(['admin', 'pedido']);
   }
 
   alteraNomeDoFornecedor(fornecedor_id: number) {

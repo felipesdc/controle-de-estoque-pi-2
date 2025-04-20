@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
@@ -11,17 +10,17 @@ export class LoginComponent {
   usuario_login: string = '';
   usuario_password: string = '';
   errorMessage: string = '';
+  isLoading: boolean = false;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService) {}
 
   login(): void {
+    this.isLoading = true;
     this.authService
       .login(this.usuario_login, this.usuario_password)
       .subscribe((success) => {
-        if (success) {
-          this.authService.showMessage('Autenticado com sucesso!', 'backsnack');
-          this.router.navigate(['/home']);
-        } else {
+        this.isLoading = false;
+        if (!success) {
           this.errorMessage = 'Usuário ou senha inválidos!';
           this.authService.showMessage(this.errorMessage, 'backsnack');
         }

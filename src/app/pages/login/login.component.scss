@@ -19,6 +19,7 @@ body {
 form {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .title {
@@ -30,4 +31,9 @@ form {
 button {
   margin-top: 20px;
   width: 60%;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 16px;
 }

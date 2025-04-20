@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { forkJoin } from 'rxjs';
 import { Perfil } from 'src/app/shared/models/perfil.model';
 import { Usuario } from 'src/app/shared/models/usuario.model';
 import { PerfilService } from 'src/app/shared/services/perfil.service';
@@ -31,18 +32,21 @@ export class UsuarioComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.perfilService.getPerfis().subscribe((perfis) => {
+    forkJoin({
+      perfis: this.perfilService.getPerfis(),
+      usuarios: this.usuarioService.getUsuarios(),
+    }).subscribe(({ perfis, usuarios }) => {
       this.perfis = perfis;
-    });
-    let listagemUsuarios: Usuario[];
-    this.usuarioService.getUsuarios().subscribe((usuarios) => {
-      listagemUsuarios = usuarios.map((usuario) => {
-        let usuario_perfil = this.perfis.find(
+
+      this.usuarios = usuarios.map((usuario) => {
+        const perfilEncontrado = perfis.find(
           (perfil) => perfil.perfil_id === usuario.usuario_perfil_id
-        ).perfil_nome;
-        return { ...usuario, usuario_perfil };
+        );
+        return {
+          ...usuario,
+          usuario_perfil: perfilEncontrado?.perfil_nome || 'Desconhecido',
+        };
       });
-      this.usuarios = listagemUsuarios;
     });
   }
 }

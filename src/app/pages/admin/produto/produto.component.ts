@@ -74,9 +74,6 @@ export class ProdutoComponent implements OnInit {
   carregaProdutos(): void {
     this.produtoService.getProdutos().subscribe((produtos) => {
       this.produtos = produtos.map((produto) => {
-        if (produto.produto_id === 2) {
-          console.log(produto);
-        }
         let produto_fornecedor = this.fornecedores.find(
           (fornecedor) =>
             fornecedor.fornecedor_id === produto.produto_fornecedor_id

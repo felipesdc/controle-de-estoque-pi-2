@@ -1,0 +1,66 @@
+<mat-card class="mat-elevation-z2">
+  <mat-card-title>Área Administrativa</mat-card-title>
+  <mat-card-content>
+    <!-- Seção de navegação -->
+    <h2>Painel de Administração</h2>
+    <p>Escolha uma seção para gerenciar:</p>
+
+    <!-- Toggle Buttons para navegação -->
+    <mat-button-toggle-group
+      [(ngModel)]="itemSelecionado"
+      appearance="standard"
+    >
+      <mat-button-toggle value="produto">Produtos</mat-button-toggle>
+      <mat-button-toggle value="pedido">Pedidos</mat-button-toggle>
+      <mat-button-toggle value="categoria">Categorias</mat-button-toggle>
+      <mat-button-toggle value="estado-pedido"
+        >Estados de Pedido</mat-button-toggle
+      >
+      <mat-button-toggle value="fornecedor">Fornecedores</mat-button-toggle>
+      <mat-button-toggle value="usuario">Usuários</mat-button-toggle>
+      <mat-button-toggle value="unidade">Unidades</mat-button-toggle>
+      <mat-button-toggle value="perfil">Perfis</mat-button-toggle>
+      <mat-button-toggle value="preco">Preços</mat-button-toggle>
+      <mat-button-toggle value="movimentacao-estoque"
+        >Movimentações</mat-button-toggle
+      >
+      <mat-button-toggle value="item-pedido">Itens de Pedido</mat-button-toggle>
+      <mat-button-toggle value="historico-estado-pedido"
+        >Histórico</mat-button-toggle
+      >
+    </mat-button-toggle-group>
+
+    <!-- Área de CRUD -->
+    <div class="admin-crud-container">
+      <ng-container [ngSwitch]="itemSelecionado">
+        <app-crud-produto *ngSwitchCase="'produto'"></app-crud-produto>
+        <app-crud-pedido *ngSwitchCase="'pedido'"></app-crud-pedido>
+        <app-crud-categoria *ngSwitchCase="'categoria'"></app-crud-categoria>
+        <app-crud-estado-pedido
+          *ngSwitchCase="'estado-pedido'"
+        ></app-crud-estado-pedido>
+        <app-crud-fornecedor *ngSwitchCase="'fornecedor'"></app-crud-fornecedor>
+        <app-crud-usuario *ngSwitchCase="'usuario'"></app-crud-usuario>
+        <app-crud-unidade *ngSwitchCase="'unidade'"></app-crud-unidade>
+        <app-crud-perfil *ngSwitchCase="'perfil'"></app-crud-perfil>
+        <app-crud-preco *ngSwitchCase="'preco'"></app-crud-preco>
+        <app-crud-movimentacao-estoque
+          *ngSwitchCase="'movimentacao-estoque'"
+        ></app-crud-movimentacao-estoque>
+        <app-crud-item-pedido
+          *ngSwitchCase="'item-pedido'"
+        ></app-crud-item-pedido>
+        <app-crud-historico-estado-pedido
+          *ngSwitchCase="'historico-estado-pedido'"
+        ></app-crud-historico-estado-pedido>
+      </ng-container>
+    </div>
+
+    <!-- Botão de Voltar -->
+    <div class="back-button-container">
+      <button mat-raised-button color="primary" routerLink="/home">
+        Voltar para Home
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>

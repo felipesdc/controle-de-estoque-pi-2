@@ -14,6 +14,8 @@
     <mat-icon>notifications</mat-icon>
   </button>
 
+  <button *ngIf="isAdmin" mat-button routerLink="/admin">Administração</button>
+
   <button mat-icon-button aria-label="Perfil">
     <mat-icon>account_circle</mat-icon>
   </button>

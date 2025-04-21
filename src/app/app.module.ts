@@ -42,6 +42,7 @@ import { SidenavService } from './shared/services/sidenav.service';
 import { AdminGuard } from './shared/guards/admin.guard';
 import { AdminModule } from './pages/admin/admin.module';
 import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
+import { AdminLayoutComponent } from './shared/layouts/admin-layout/admin-layout.component';
 
 registerLocaleData(localePt);
 
@@ -53,6 +54,7 @@ registerLocaleData(localePt);
     FooterComponent,
     SidenavComponent,
     HomeLayoutComponent,
+    AdminLayoutComponent,
   ],
   bootstrap: [AppComponent],
   imports: [

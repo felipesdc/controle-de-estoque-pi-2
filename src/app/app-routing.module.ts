@@ -4,6 +4,7 @@ import { HomeLayoutComponent } from './shared/layouts/home-layout/home-layout.co
 import { LoginComponent } from './pages/login/login.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { AdminGuard } from './shared/guards/admin.guard';
+import { AdminLayoutComponent } from './shared/layouts/admin-layout/admin-layout.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   },
   {
     path: 'admin',
+    component: AdminLayoutComponent,
     children: [
       {
         path: '',

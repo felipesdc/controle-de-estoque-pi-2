@@ -2,12 +2,19 @@
   <mat-card-title> Cadastrar um novo Item de Pedido </mat-card-title>
   <form [formGroup]="itemPedidoForm">
     <mat-form-field>
-      <input
-        placeholder="ID do Pedido"
-        matInput
+      <mat-label>ID do Pedido</mat-label>
+      <mat-select
         formControlName="item_pedido_pedido_id"
         name="item_pedido_pedido_id"
-      />
+        (selectionChange)="alteraDescricaoDoPedido($event.value)"
+      >
+        @for (pedido of pedidos; track pedido) {
+        <mat-option [value]="pedido.pedido_id"
+          >{{ pedido.pedido_id }} - {{ pedido.pedido_data | date }} -
+          {{ pedido.pedido_observacao }}</mat-option
+        >
+        }
+      </mat-select>
     </mat-form-field>
     <p>
       <span
@@ -22,12 +29,19 @@
     </p>
 
     <mat-form-field>
-      <input
-        placeholder="ID do Produto do Item do Pedido"
-        matInput
+      <mat-label>ID do Produto do Item de Pedido</mat-label>
+      <mat-select
         formControlName="item_pedido_produto_id"
         name="item_pedido_produto_id"
-      />
+        (selectionChange)="alteraDescricaoDoProduto($event.value)"
+      >
+        @for (produto of produtos; track produto) {
+        <mat-option [value]="produto.produto_id"
+          >{{ produto.produto_id }} -
+          {{ produto.produto_descricao }}</mat-option
+        >
+        }
+      </mat-select>
     </mat-form-field>
     <p>
       <span
@@ -42,12 +56,19 @@
     </p>
 
     <mat-form-field>
-      <input
-        placeholder="ID da Unidade do Item do Pedido"
-        matInput
+      <mat-label>ID da Unidade do Item de Pedido</mat-label>
+      <mat-select
         formControlName="item_pedido_unidade_id"
         name="item_pedido_unidade_id"
-      />
+        (selectionChange)="alteraDescricaoDaUnidade($event.value)"
+      >
+        @for (unidade of unidades; track unidade) {
+        <mat-option [value]="unidade.unidade_id"
+          >{{ unidade.unidade_id }} -
+          {{ unidade.unidade_descricao }}</mat-option
+        >
+        }
+      </mat-select>
     </mat-form-field>
     <p>
       <span
@@ -62,12 +83,19 @@
     </p>
 
     <mat-form-field>
-      <input
-        placeholder="ID do Preço do Item do Pedido"
-        matInput
+      <mat-label>ID do Preço do Item de Pedido</mat-label>
+      <mat-select
         formControlName="item_pedido_preco_id"
         name="item_pedido_preco_id"
-      />
+        (selectionChange)="alteraValorDoPreco($event.value)"
+      >
+        @for (preco of precos; track preco) {
+        <mat-option [value]="preco.preco_id"
+          >{{ preco.preco_id }} -
+          {{ preco.preco_compra | currency : ".1-2" : "R$" }}</mat-option
+        >
+        }
+      </mat-select>
     </mat-form-field>
     <p>
       <span

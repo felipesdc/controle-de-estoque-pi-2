@@ -88,6 +88,34 @@ export class AuthService {
     }
   }
 
+  isGerente(): boolean {
+    const token = this.getToken();
+    if (!token) {
+      return false;
+    }
+
+    try {
+      const decoded = jwtDecode<TokenPayload>(token);
+      return decoded.usuario_perfil_id === 2;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  isFuncionario() {
+    const token = this.getToken();
+    if (!token) {
+      return false;
+    }
+
+    try {
+      const decoded = jwtDecode<TokenPayload>(token);
+      return decoded.usuario_perfil_id !== 1 && decoded.usuario_perfil_id !== 2;
+    } catch (error) {
+      return false;
+    }
+  }
+
   isLoggedIn(): Observable<boolean> {
     return this.isAuthenticated.asObservable();
   }

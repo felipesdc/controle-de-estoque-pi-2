@@ -9,8 +9,12 @@ import { filter } from 'rxjs/operators';
 })
 export class HomeComponent implements OnInit {
   childRouteActive = false;
+  homeRouteActive = false;
 
   constructor(private router: Router) {
+    this.router.events.subscribe(() => {
+      this.homeRouteActive = this.router.url === '/home';
+    });
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => {

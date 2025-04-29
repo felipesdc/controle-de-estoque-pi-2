@@ -1,17 +1,17 @@
 <main>
-  <ng-container *ngIf="!childRouteActive">
+  <ng-container *ngIf="!childRouteActive && homeRouteActive">
     <section class="welcome-section">
       <h1>Bem-vindo ao Sistema de Controle de Estoques</h1>
       <p>Use o menu lateral para navegar entre as funcionalidades.</p>
 
       <div class="quick-actions">
-        <button mat-raised-button color="primary" routerLink="/home/produto">
+        <button mat-raised-button color="primary" routerLink="/home/produtos">
           Novo Produto
         </button>
         <button
           mat-raised-button
           color="accent"
-          routerLink="/home/movimentacao"
+          routerLink="/home/movimentacoes"
         >
           Nova Movimentação
         </button>

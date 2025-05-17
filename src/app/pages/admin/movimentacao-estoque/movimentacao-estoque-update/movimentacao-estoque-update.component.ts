@@ -13,7 +13,7 @@ import { MovimentacaoEstoqueService } from 'src/app/shared/services/movimentacao
   styleUrls: ['./movimentacao-estoque-update.component.scss'],
 })
 export class MovimentacaoEstoqueUpdateComponent implements OnInit {
-  movimento_id: string;
+  movimento_id: number;
 
   movimentacaoEstoqueForm: UntypedFormGroup;
 
@@ -39,7 +39,7 @@ export class MovimentacaoEstoqueUpdateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.movimento_id = this.route.snapshot.paramMap.get('movimento_id');
+    this.movimento_id = +this.route.snapshot.paramMap.get('movimento_id');
     this.movimentacaoEstoqueForm.controls['movimento_id'].setValue(
       this.movimento_id
     );

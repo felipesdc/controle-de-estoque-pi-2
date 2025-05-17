@@ -27,7 +27,7 @@ export class MovimentacaoEstoqueService {
   }
 
   getMovimentacaoEstoque(
-    movimento_id: string
+    movimento_id: number
   ): Observable<MovimentacaoEstoque> {
     return this.http.get<MovimentacaoEstoque>(
       `${environment.apiurl}/movimentacao-estoque/${movimento_id}`
@@ -45,7 +45,7 @@ export class MovimentacaoEstoqueService {
 
   updateExistingMovimentacaoEstoque(
     movimentacaoEstoque: MovimentacaoEstoque,
-    movimento_id: string
+    movimento_id: number
   ): Observable<MovimentacaoEstoque> {
     return this.http.put<MovimentacaoEstoque>(
       `${environment.apiurl}/movimentacao-estoque/${movimento_id}`,
@@ -53,7 +53,7 @@ export class MovimentacaoEstoqueService {
     );
   }
 
-  deleteExistingMovimentacaoEstoque(movimento_id: string): Observable<void> {
+  deleteExistingMovimentacaoEstoque(movimento_id: number): Observable<void> {
     return this.http.delete<void>(
       `${environment.apiurl}/movimentacao-estoque/${movimento_id}`
     );

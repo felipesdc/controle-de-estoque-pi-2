@@ -13,7 +13,7 @@ import { CategoriaService } from 'src/app/shared/services/categoria.service';
   styleUrls: ['./categoria-delete.component.scss'],
 })
 export class CategoriaDeleteComponent implements OnInit {
-  categoria_id: string;
+  categoria_id: number;
 
   categoriaForm: UntypedFormGroup;
 
@@ -34,7 +34,7 @@ export class CategoriaDeleteComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.categoria_id = this.route.snapshot.paramMap.get('categoria_id');
+    this.categoria_id = +this.route.snapshot.paramMap.get('categoria_id');
     this.categoriaForm.controls['categoria_id'].setValue(this.categoria_id);
     this.categoriaService
       .getCategoria(this.categoria_id)

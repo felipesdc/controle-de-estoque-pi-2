@@ -19,7 +19,7 @@ import { UsuarioService } from 'src/app/shared/services/usuario.service';
   styleUrls: ['./pedido-delete.component.scss'],
 })
 export class PedidoDeleteComponent implements OnInit {
-  pedido_id: string;
+  pedido_id: number;
 
   pedidoForm: UntypedFormGroup;
 
@@ -55,7 +55,7 @@ export class PedidoDeleteComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.pedido_id = this.route.snapshot.paramMap.get('pedido_id');
+    this.pedido_id = +this.route.snapshot.paramMap.get('pedido_id');
     this.pedidoForm.controls['pedido_id'].setValue(this.pedido_id);
     this.fornecedorService.getFornecedores().subscribe({
       next: (fornecedores) => (this.fornecedores = fornecedores),

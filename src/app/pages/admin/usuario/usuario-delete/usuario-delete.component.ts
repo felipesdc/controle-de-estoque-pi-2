@@ -15,7 +15,7 @@ import { UsuarioService } from 'src/app/shared/services/usuario.service';
   styleUrls: ['./usuario-delete.component.scss'],
 })
 export class UsuarioDeleteComponent implements OnInit {
-  usuario_id: string;
+  usuario_id: number;
 
   usuarioForm: UntypedFormGroup;
 
@@ -49,7 +49,7 @@ export class UsuarioDeleteComponent implements OnInit {
     this.perfilService.getPerfis().subscribe((perfis) => {
       this.perfis = perfis;
     });
-    this.usuario_id = this.route.snapshot.paramMap.get('usuario_id');
+    this.usuario_id = +this.route.snapshot.paramMap.get('usuario_id');
     this.usuarioForm.controls['usuario_id'].setValue(this.usuario_id);
     this.usuarioService.getUsuario(this.usuario_id).subscribe((usuario) => {
       let usuario_perfil = this.perfis.find(

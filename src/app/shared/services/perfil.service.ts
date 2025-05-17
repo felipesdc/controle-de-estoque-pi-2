@@ -24,7 +24,7 @@ export class PerfilService {
     return this.http.get<Perfil[]>(`${environment.apiurl}/perfil`);
   }
 
-  getPerfil(perfil_id: string): Observable<Perfil> {
+  getPerfil(perfil_id: number): Observable<Perfil> {
     return this.http.get<Perfil>(`${environment.apiurl}/perfil/${perfil_id}`);
   }
 
@@ -32,14 +32,14 @@ export class PerfilService {
     return this.http.post<Perfil>(`${environment.apiurl}/perfil`, perfil);
   }
 
-  updateExistingPerfil(perfil: Perfil, perfil_id: string): Observable<Perfil> {
+  updateExistingPerfil(perfil: Perfil, perfil_id: number): Observable<Perfil> {
     return this.http.put<Perfil>(
       `${environment.apiurl}/perfil/${perfil_id}`,
       perfil
     );
   }
 
-  deleteExistingPerfil(perfil_id: string): Observable<void> {
+  deleteExistingPerfil(perfil_id: number): Observable<void> {
     return this.http.delete<void>(`${environment.apiurl}/perfil/${perfil_id}`);
   }
 }

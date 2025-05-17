@@ -24,7 +24,7 @@ export class PedidoService {
     return this.http.get<Pedido[]>(`${environment.apiurl}/pedido`);
   }
 
-  getPedido(pedido_id: string): Observable<Pedido> {
+  getPedido(pedido_id: number): Observable<Pedido> {
     return this.http.get<Pedido>(`${environment.apiurl}/pedido/${pedido_id}`);
   }
 
@@ -32,14 +32,14 @@ export class PedidoService {
     return this.http.post<Pedido>(`${environment.apiurl}/pedido`, pedido);
   }
 
-  updateExistingPedido(pedido: Pedido, pedido_id: string): Observable<Pedido> {
+  updateExistingPedido(pedido: Pedido, pedido_id: number): Observable<Pedido> {
     return this.http.put<Pedido>(
       `${environment.apiurl}/pedido/${pedido_id}`,
       pedido
     );
   }
 
-  deleteExistingPedido(pedido_id: string): Observable<void> {
+  deleteExistingPedido(pedido_id: number): Observable<void> {
     return this.http.delete<void>(`${environment.apiurl}/pedido/${pedido_id}`);
   }
 }

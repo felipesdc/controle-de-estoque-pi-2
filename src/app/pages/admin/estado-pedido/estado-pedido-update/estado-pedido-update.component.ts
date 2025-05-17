@@ -13,7 +13,7 @@ import { EstadoPedidoService } from 'src/app/shared/services/estado-pedido.servi
   styleUrls: ['./estado-pedido-update.component.scss'],
 })
 export class EstadoPedidoUpdateComponent implements OnInit {
-  estado_pedido_id: string;
+  estado_pedido_id: number;
 
   estadoPedidoForm: UntypedFormGroup;
 
@@ -35,7 +35,7 @@ export class EstadoPedidoUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.estado_pedido_id =
-      this.route.snapshot.paramMap.get('estado_pedido_id');
+      +this.route.snapshot.paramMap.get('estado_pedido_id');
     this.estadoPedidoForm.controls['estado_pedido_id'].setValue(
       this.estado_pedido_id
     );

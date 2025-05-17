@@ -27,7 +27,7 @@ export class HistoricoEstadoPedidoService {
   }
 
   getHistoricoEstadoPedido(
-    historico_id: string
+    historico_id: number
   ): Observable<HistoricoEstadoPedido> {
     return this.http.get<HistoricoEstadoPedido>(
       `${environment.apiurl}/historico-estado-pedido/${historico_id}`
@@ -45,7 +45,7 @@ export class HistoricoEstadoPedidoService {
 
   updateExistingHistoricoEstadoPedido(
     historicoEstadoPedido: HistoricoEstadoPedido,
-    historico_id: string
+    historico_id: number
   ): Observable<HistoricoEstadoPedido> {
     return this.http.put<HistoricoEstadoPedido>(
       `${environment.apiurl}/historico-estado-pedido/${historico_id}`,
@@ -53,7 +53,7 @@ export class HistoricoEstadoPedidoService {
     );
   }
 
-  deleteExistingHistoricoEstadoPedido(historico_id: string): Observable<void> {
+  deleteExistingHistoricoEstadoPedido(historico_id: number): Observable<void> {
     return this.http.delete<void>(
       `${environment.apiurl}/historico-estado-pedido/${historico_id}`
     );

@@ -13,7 +13,7 @@ import { ItemPedidoService } from 'src/app/shared/services/item-pedido.service';
   styleUrls: ['./item-pedido-delete.component.scss'],
 })
 export class ItemPedidoDeleteComponent implements OnInit {
-  item_pedido_id: string;
+  item_pedido_id: number;
 
   itemPedidoForm: UntypedFormGroup;
 
@@ -39,7 +39,7 @@ export class ItemPedidoDeleteComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.item_pedido_id = this.route.snapshot.paramMap.get('item_pedido_id');
+    this.item_pedido_id = +this.route.snapshot.paramMap.get('item_pedido_id');
     this.itemPedidoForm.controls['item_pedido_id'].setValue(
       this.item_pedido_id
     );

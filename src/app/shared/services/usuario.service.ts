@@ -24,7 +24,7 @@ export class UsuarioService {
     return this.http.get<Usuario[]>(`${environment.apiurl}/usuario`);
   }
 
-  getUsuario(usuario_id: string): Observable<Usuario> {
+  getUsuario(usuario_id: number): Observable<Usuario> {
     return this.http.get<Usuario>(
       `${environment.apiurl}/usuario/${usuario_id}`
     );
@@ -36,7 +36,7 @@ export class UsuarioService {
 
   updateExistingUsuario(
     usuario: Usuario,
-    usuario_id: string
+    usuario_id: number
   ): Observable<Usuario> {
     return this.http.put<Usuario>(
       `${environment.apiurl}/usuario/${usuario_id}`,
@@ -44,7 +44,7 @@ export class UsuarioService {
     );
   }
 
-  deleteExistingUsuario(usuario_id: string): Observable<void> {
+  deleteExistingUsuario(usuario_id: number): Observable<void> {
     return this.http.delete<void>(
       `${environment.apiurl}/usuario/${usuario_id}`
     );

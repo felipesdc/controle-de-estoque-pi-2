@@ -24,7 +24,7 @@ export class EstadoPedidoService {
     return this.http.get<EstadoPedido[]>(`${environment.apiurl}/estado-pedido`);
   }
 
-  getEstadoPedido(estado_pedido_id: string): Observable<EstadoPedido> {
+  getEstadoPedido(estado_pedido_id: number): Observable<EstadoPedido> {
     return this.http.get<EstadoPedido>(
       `${environment.apiurl}/estado-pedido/${estado_pedido_id}`
     );
@@ -39,7 +39,7 @@ export class EstadoPedidoService {
 
   updateExistingEstadoPedido(
     estadoPedido: EstadoPedido,
-    estado_pedido_id: string
+    estado_pedido_id: number
   ): Observable<EstadoPedido> {
     return this.http.put<EstadoPedido>(
       `${environment.apiurl}/estado-pedido/${estado_pedido_id}`,
@@ -47,7 +47,7 @@ export class EstadoPedidoService {
     );
   }
 
-  deleteExistingEstadoPedido(estado_pedido_id: string): Observable<void> {
+  deleteExistingEstadoPedido(estado_pedido_id: number): Observable<void> {
     return this.http.delete<void>(
       `${environment.apiurl}/estado-pedido/${estado_pedido_id}`
     );

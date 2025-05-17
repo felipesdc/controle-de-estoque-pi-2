@@ -13,7 +13,7 @@ import { UnidadeService } from 'src/app/shared/services/unidade.service';
   styleUrls: ['./unidade-update.component.scss'],
 })
 export class UnidadeUpdateComponent implements OnInit {
-  unidade_id: string;
+  unidade_id: number;
 
   unidadeForm: UntypedFormGroup;
 
@@ -34,7 +34,7 @@ export class UnidadeUpdateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.unidade_id = this.route.snapshot.paramMap.get('unidade_id');
+    this.unidade_id = +this.route.snapshot.paramMap.get('unidade_id');
     this.unidadeForm.controls['unidade_id'].setValue(this.unidade_id);
     this.unidadeService.getUnidade(this.unidade_id).subscribe((unidade) => {
       this.unidadeForm.controls['unidade_descricao'].setValue(

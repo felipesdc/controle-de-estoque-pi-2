@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Produto } from 'src/app/shared/models/produto.model';
+import { Categoria } from 'src/app/shared/models/categoria.model';
+import { CategoriaService } from 'src/app/shared/services/categoria.service';
 
 @Component({
   selector: 'app-produtos-create-dialog',
@@ -9,20 +12,43 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ProdutosCreateDialogComponent {
   produtoForm: FormGroup;
+  categorias: Categoria[] = [];
 
   constructor(
     private fb: FormBuilder,
-    private dialogRef: MatDialogRef<ProdutosCreateDialogComponent>
-  ) {
+    private dialogRef: MatDialogRef<ProdutosCreateDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: Produto,
+    private categoriaService: CategoriaService
+  ) {}
+
+  ngOnInit(): void {
+    this.categoriaService.getCategorias().subscribe((categorias) => {
+      this.categorias = categorias;
+    });
     this.produtoForm = this.fb.group({
-      produto_nome: ['', Validators.required],
-      produto_quantidade: [0, [Validators.required, Validators.min(0)]],
+      produto_descricao: [
+        this.data?.produto_descricao || '',
+        Validators.required,
+      ],
+      produto_quantidade_estoque: [
+        this.data?.produto_quantidade_estoque || 0,
+        Validators.required,
+      ],
+      produto_categoria_id: [this.data?.produto_categoria_id || ''],
     });
   }
 
   onSave() {
     if (this.produtoForm.valid) {
-      this.dialogRef.close(this.produtoForm.value);
+      const formValue = this.produtoForm.value;
+
+      const produto = {
+        produto_descricao: formValue.produto_descricao,
+        produto_quantidade_estoque: formValue.produto_quantidade_estoque,
+        produto_categoria_id: formValue.produto_categoria_id,
+      };
+
+      this.dialogRef.close(produto);
     }
   }
 

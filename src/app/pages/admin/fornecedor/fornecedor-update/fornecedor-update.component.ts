@@ -13,7 +13,7 @@ import { FornecedorService } from 'src/app/shared/services/fornecedor.service';
   styleUrls: ['./fornecedor-update.component.scss'],
 })
 export class FornecedorUpdateComponent implements OnInit {
-  fornecedor_id: string;
+  fornecedor_id: number;
 
   fornecedorForm: UntypedFormGroup;
 
@@ -36,7 +36,7 @@ export class FornecedorUpdateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fornecedor_id = this.route.snapshot.paramMap.get('fornecedor_id');
+    this.fornecedor_id = +this.route.snapshot.paramMap.get('fornecedor_id');
     this.fornecedorForm.controls['fornecedor_id'].setValue(this.fornecedor_id);
     this.fornecedorService
       .getFornecedor(this.fornecedor_id)

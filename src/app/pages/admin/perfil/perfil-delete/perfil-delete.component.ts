@@ -13,7 +13,7 @@ import { PerfilService } from 'src/app/shared/services/perfil.service';
   styleUrls: ['./perfil-delete.component.scss'],
 })
 export class PerfilDeleteComponent implements OnInit {
-  perfil_id: string;
+  perfil_id: number;
 
   perfilForm: UntypedFormGroup;
 
@@ -34,7 +34,7 @@ export class PerfilDeleteComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.perfil_id = this.route.snapshot.paramMap.get('perfil_id');
+    this.perfil_id = +this.route.snapshot.paramMap.get('perfil_id');
     this.perfilForm.controls['perfil_id'].setValue(this.perfil_id);
     this.perfilService.getPerfil(this.perfil_id).subscribe((perfil) => {
       this.perfilForm.controls['perfil_nome'].setValue(perfil.perfil_nome);

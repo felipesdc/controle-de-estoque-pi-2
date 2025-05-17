@@ -24,7 +24,7 @@ export class FornecedorService {
     return this.http.get<Fornecedor[]>(`${environment.apiurl}/fornecedor`);
   }
 
-  getFornecedor(fornecedor_id: string): Observable<Fornecedor> {
+  getFornecedor(fornecedor_id: number): Observable<Fornecedor> {
     return this.http.get<Fornecedor>(
       `${environment.apiurl}/fornecedor/${fornecedor_id}`
     );
@@ -39,7 +39,7 @@ export class FornecedorService {
 
   updateExistingFornecedor(
     fornecedor: Fornecedor,
-    fornecedor_id: string
+    fornecedor_id: number
   ): Observable<Fornecedor> {
     return this.http.put<Fornecedor>(
       `${environment.apiurl}/fornecedor/${fornecedor_id}`,
@@ -47,7 +47,7 @@ export class FornecedorService {
     );
   }
 
-  deleteExistingFornecedor(fornecedor_id: string): Observable<void> {
+  deleteExistingFornecedor(fornecedor_id: number): Observable<void> {
     return this.http.delete<void>(
       `${environment.apiurl}/fornecedor/${fornecedor_id}`
     );

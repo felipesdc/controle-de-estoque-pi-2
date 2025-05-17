@@ -24,7 +24,7 @@ export class UnidadeService {
     return this.http.get<Unidade[]>(`${environment.apiurl}/unidade`);
   }
 
-  getUnidade(unidade_id: string): Observable<Unidade> {
+  getUnidade(unidade_id: number): Observable<Unidade> {
     return this.http.get<Unidade>(
       `${environment.apiurl}/unidade/${unidade_id}`
     );
@@ -36,7 +36,7 @@ export class UnidadeService {
 
   updateExistingUnidade(
     unidade: Unidade,
-    unidade_id: string
+    unidade_id: number
   ): Observable<Unidade> {
     return this.http.put<Unidade>(
       `${environment.apiurl}/unidade/${unidade_id}`,
@@ -44,7 +44,7 @@ export class UnidadeService {
     );
   }
 
-  deleteExistingUnidade(unidade_id: string): Observable<void> {
+  deleteExistingUnidade(unidade_id: number): Observable<void> {
     return this.http.delete<void>(
       `${environment.apiurl}/unidade/${unidade_id}`
     );

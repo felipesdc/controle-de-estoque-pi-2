@@ -24,7 +24,7 @@ export class CategoriaService {
     return this.http.get<Categoria[]>(`${environment.apiurl}/categoria`);
   }
 
-  getCategoria(categoria_id: string): Observable<Categoria> {
+  getCategoria(categoria_id: number): Observable<Categoria> {
     return this.http.get<Categoria>(
       `${environment.apiurl}/categoria/${categoria_id}`
     );
@@ -39,7 +39,7 @@ export class CategoriaService {
 
   updateExistingCategoria(
     categoria: Categoria,
-    categoria_id: string
+    categoria_id: number
   ): Observable<Categoria> {
     return this.http.put<Categoria>(
       `${environment.apiurl}/categoria/${categoria_id}`,
@@ -47,7 +47,7 @@ export class CategoriaService {
     );
   }
 
-  deleteExistingCategoria(categoria_id: string): Observable<void> {
+  deleteExistingCategoria(categoria_id: number): Observable<void> {
     return this.http.delete<void>(
       `${environment.apiurl}/categoria/${categoria_id}`
     );

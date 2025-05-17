@@ -13,7 +13,7 @@ import { HistoricoEstadoPedidoService } from 'src/app/shared/services/historico-
   styleUrls: ['./historico-estado-pedido-update.component.scss'],
 })
 export class HistoricoEstadoPedidoUpdateComponent implements OnInit {
-  historico_id: string;
+  historico_id: number;
 
   historicoForm: UntypedFormGroup;
 
@@ -38,7 +38,7 @@ export class HistoricoEstadoPedidoUpdateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.historico_id = this.route.snapshot.paramMap.get('historico_id');
+    this.historico_id = +this.route.snapshot.paramMap.get('historico_id');
     this.historicoForm.controls['historico_id'].setValue(this.historico_id);
     this.historicoEstadoPedidoService
       .getHistoricoEstadoPedido(this.historico_id)

@@ -24,7 +24,7 @@ export class ProdutoService {
     return this.http.get<Produto[]>(`${environment.apiurl}/produto`);
   }
 
-  getProduto(produto_id: string): Observable<Produto> {
+  getProduto(produto_id: number): Observable<Produto> {
     return this.http.get<Produto>(
       `${environment.apiurl}/produto/${produto_id}`
     );
@@ -36,7 +36,7 @@ export class ProdutoService {
 
   updateExistingProduto(
     produto: Produto,
-    produto_id: string
+    produto_id: number
   ): Observable<Produto> {
     return this.http.put<Produto>(
       `${environment.apiurl}/produto/${produto_id}`,
@@ -44,7 +44,7 @@ export class ProdutoService {
     );
   }
 
-  deleteExistingProduto(produto_id: string): Observable<void> {
+  deleteExistingProduto(produto_id: number): Observable<void> {
     return this.http.delete<void>(
       `${environment.apiurl}/produto/${produto_id}`
     );

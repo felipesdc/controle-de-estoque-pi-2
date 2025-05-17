@@ -24,7 +24,7 @@ export class PrecoService {
     return this.http.get<Preco[]>(`${environment.apiurl}/preco`);
   }
 
-  getPreco(preco_id: string): Observable<Preco> {
+  getPreco(preco_id: number): Observable<Preco> {
     return this.http.get<Preco>(`${environment.apiurl}/preco/${preco_id}`);
   }
 
@@ -32,14 +32,14 @@ export class PrecoService {
     return this.http.post<Preco>(`${environment.apiurl}/preco`, preco);
   }
 
-  updateExistingPreco(preco: Preco, preco_id: string): Observable<Preco> {
+  updateExistingPreco(preco: Preco, preco_id: number): Observable<Preco> {
     return this.http.put<Preco>(
       `${environment.apiurl}/preco/${preco_id}`,
       preco
     );
   }
 
-  deleteExistingPreco(preco_id: string): Observable<void> {
+  deleteExistingPreco(preco_id: number): Observable<void> {
     return this.http.delete<void>(`${environment.apiurl}/preco/${preco_id}`);
   }
 }

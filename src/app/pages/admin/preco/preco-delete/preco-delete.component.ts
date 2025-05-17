@@ -15,7 +15,7 @@ import { PrecoService } from 'src/app/shared/services/preco.service';
   styleUrls: ['./preco-delete.component.scss'],
 })
 export class PrecoDeleteComponent implements OnInit {
-  preco_id: string;
+  preco_id: number;
 
   precoForm: UntypedFormGroup;
 
@@ -39,7 +39,7 @@ export class PrecoDeleteComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.preco_id = this.route.snapshot.paramMap.get('preco_id');
+    this.preco_id = +this.route.snapshot.paramMap.get('preco_id');
     this.precoForm.controls['preco_id'].setValue(this.preco_id);
     this.precoService.getPreco(this.preco_id).subscribe((preco: Preco) => {
       this.precoForm.controls['preco_compra'].setValue(preco.preco_compra);

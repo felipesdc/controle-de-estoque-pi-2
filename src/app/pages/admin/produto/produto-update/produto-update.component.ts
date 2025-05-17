@@ -22,7 +22,7 @@ import { UnidadeService } from 'src/app/shared/services/unidade.service';
   styleUrls: ['./produto-update.component.scss'],
 })
 export class ProdutoUpdateComponent implements OnInit {
-  produto_id: string;
+  produto_id: number;
 
   produtoForm: UntypedFormGroup;
 
@@ -81,7 +81,7 @@ export class ProdutoUpdateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.produto_id = this.route.snapshot.paramMap.get('produto_id');
+    this.produto_id = +this.route.snapshot.paramMap.get('produto_id');
     this.produtoForm.controls['produto_id'].setValue(this.produto_id);
   }
 

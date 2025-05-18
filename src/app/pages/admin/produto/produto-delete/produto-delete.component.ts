@@ -47,19 +47,19 @@ export class ProdutoDeleteComponent implements OnInit {
   ) {
     this.produtoForm = fb.group({
       produto_id: ['', Validators.required],
-      produto_descricao: ['', Validators.required],
-      produto_fornecedor_id: ['', Validators.required],
-      produto_fornecedor: ['', Validators.required],
-      produto_preco_id: ['', Validators.required],
-      produto_preco: ['', Validators.required],
-      produto_unidade_id: ['', Validators.required],
-      produto_unidade: ['', Validators.required],
-      produto_categoria_id: ['', Validators.required],
-      produto_categoria: ['', Validators.required],
-      produto_quantidade_estoque: ['', Validators.required],
-      produto_data_validade: ['', Validators.required],
-      produto_codigo_barras: ['', Validators.required],
-      produto_estado: ['', Validators.required],
+      produto_descricao: [''],
+      produto_fornecedor_id: [''],
+      produto_fornecedor: [''],
+      produto_preco_id: [''],
+      produto_preco: [''],
+      produto_unidade_id: [''],
+      produto_unidade: [''],
+      produto_categoria_id: [''],
+      produto_categoria: [''],
+      produto_quantidade_estoque: [''],
+      produto_data_validade: [''],
+      produto_codigo_barras: [''],
+      produto_estado: [''],
     });
   }
 
@@ -94,34 +94,43 @@ export class ProdutoDeleteComponent implements OnInit {
         produto.produto_fornecedor_id
       );
       this.produtoForm.controls['produto_fornecedor'].setValue(
-        this.fornecedores.find(
-          (fornecedor) =>
-            fornecedor.fornecedor_id === produto.produto_fornecedor_id
-        ).fornecedor_nome
+        produto.produto_fornecedor_id
+          ? this.fornecedores.find(
+              (fornecedor) =>
+                fornecedor.fornecedor_id === produto.produto_fornecedor_id
+            ).fornecedor_nome
+          : ''
       );
       this.produtoForm.controls['produto_preco_id'].setValue(
         produto.produto_preco_id
       );
       this.produtoForm.controls['produto_preco'].setValue(
-        this.precos.find((preco) => preco.preco_id === produto.produto_preco_id)
-          .preco_compra
+        produto.produto_preco_id
+          ? this.precos.find(
+              (preco) => preco.preco_id === produto.produto_preco_id
+            ).preco_compra
+          : ''
       );
       this.produtoForm.controls['produto_unidade_id'].setValue(
         produto.produto_unidade_id
       );
       this.produtoForm.controls['produto_unidade'].setValue(
-        this.unidades.find(
-          (unidade) => unidade.unidade_id === produto.produto_unidade_id
-        ).unidade_descricao
+        produto.produto_unidade_id
+          ? this.unidades.find(
+              (unidade) => unidade.unidade_id === produto.produto_unidade_id
+            ).unidade_descricao
+          : ''
       );
       this.produtoForm.controls['produto_categoria_id'].setValue(
         produto.produto_categoria_id
       );
       this.produtoForm.controls['produto_categoria'].setValue(
-        this.categorias.find(
-          (categorias) =>
-            categorias.categoria_id === produto.produto_categoria_id
-        ).categoria_descricao
+        produto.produto_categoria_id
+          ? this.categorias.find(
+              (categorias) =>
+                categorias.categoria_id === produto.produto_categoria_id
+            ).categoria_descricao
+          : ''
       );
       this.produtoForm.controls['produto_quantidade_estoque'].setValue(
         produto.produto_quantidade_estoque
@@ -133,7 +142,7 @@ export class ProdutoDeleteComponent implements OnInit {
         produto.produto_codigo_barras
       );
       this.produtoForm.controls['produto_estado'].setValue(
-        produto.produto_estado.toString()
+        produto.produto_estado ? produto.produto_estado.toString() : ''
       );
     });
   }

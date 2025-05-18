@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -18,7 +18,7 @@ import { forkJoin } from 'rxjs';
   templateUrl: './produtos.component.html',
   styleUrls: ['./produtos.component.scss'],
 })
-export class ProdutosComponent implements AfterViewInit {
+export class ProdutosComponent implements OnInit, AfterViewInit {
   produtos: Produto[];
   categorias: Categoria[];
 
@@ -67,12 +67,14 @@ export class ProdutosComponent implements AfterViewInit {
     this.loadProdutos();
   }
 
+  ngAfterViewInit() {}
+
   loadProdutos(): void {
     forkJoin({
       produtos: this.produtoService.getProdutos(),
       categorias: this.categoriaService.getCategorias(),
     }).subscribe(({ produtos, categorias }) => {
-      this.produtos = produtos;
+      this.produtos = produtos.filter((produto) => produto.produto_estado);
       this.categorias = categorias;
 
       // Adiciona o nome da categoria a cada produto
@@ -90,8 +92,6 @@ export class ProdutosComponent implements AfterViewInit {
       this.dataSource.sort = this.sort;
     });
   }
-
-  ngAfterViewInit() {}
 
   onAddProduto() {
     const dialogRef = this.dialog.open(ProdutosCreateDialogComponent, {
@@ -150,15 +150,23 @@ export class ProdutosComponent implements AfterViewInit {
 
   onDeleteProduto(produtoId: number): void {
     this.produtoService.getProduto(produtoId).subscribe((produto) => {
-      this.produtoService.deleteExistingProduto(produtoId).subscribe(() => {
-        this.loadProdutos();
-        this.registrarMovimentacao(
-          produtoId,
-          produto.produto_descricao,
-          produto.produto_quantidade_estoque,
-          'saida'
-        );
-      });
+      const produtoAtualizado = {
+        ...produto,
+        produto_estado: false,
+        produto_quantidade_estoque: 0,
+      };
+
+      this.produtoService
+        .updateExistingProduto(produtoAtualizado, produtoId)
+        .subscribe(() => {
+          this.loadProdutos();
+          this.registrarMovimentacao(
+            produtoId,
+            produto.produto_descricao,
+            produto.produto_quantidade_estoque,
+            'saida'
+          );
+        });
     });
   }
 

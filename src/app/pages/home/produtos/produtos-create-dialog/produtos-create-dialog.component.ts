@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Produto } from 'src/app/shared/models/produto.model';
@@ -10,7 +10,7 @@ import { CategoriaService } from 'src/app/shared/services/categoria.service';
   templateUrl: './produtos-create-dialog.component.html',
   styleUrls: ['./produtos-create-dialog.component.scss'],
 })
-export class ProdutosCreateDialogComponent {
+export class ProdutosCreateDialogComponent implements OnInit {
   produtoForm: FormGroup;
   categorias: Categoria[] = [];
 
@@ -46,6 +46,7 @@ export class ProdutosCreateDialogComponent {
         produto_descricao: formValue.produto_descricao,
         produto_quantidade_estoque: formValue.produto_quantidade_estoque,
         produto_categoria_id: formValue.produto_categoria_id,
+        produto_estado: true,
       };
 
       this.dialogRef.close(produto);
